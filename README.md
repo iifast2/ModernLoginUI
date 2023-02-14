@@ -1,8 +1,13 @@
-# MODERN LOGIN /SIGN UP UI x FLUTTER
+# MODERN LOGIN / SIGN UP UI x FLUTTER
 
 
 
+### ✌&ensp;Preview
 
+![Image](https://i.imgur.com/jUuQWM1.png)
+
+
+![Image](https://i.imgur.com/8JHEdN0.png)
 
 <br/>
 
