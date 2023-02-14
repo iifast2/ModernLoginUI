@@ -1,3 +1,5 @@
+```
+
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
@@ -126,12 +128,7 @@ class LoginPage extends StatelessWidget {
 
                     // apple button
                     SquareTile(imagePath: 'lib/images/apple.png'),
-
-                    /////////////////////////// I added this button //////////////////////////////
-                    SizedBox(width: 20),
-                    // facebook button
-                    SquareTile(imagePath: 'lib/images/facebook.png')
-                    //////////////////////////////////////////////////////////////////////////////////////////
+                    
                   ],
                 ),
 
@@ -163,3 +160,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
+
+
+```
