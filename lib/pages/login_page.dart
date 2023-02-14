@@ -27,18 +27,32 @@ class LoginPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                const SizedBox(height: 50),
+            // stack the logo image over the rest of the content
+            Stack(
+              children: [
+              // logo
+              Positioned(
+
+              right: 5,
+              child: Image.asset(
+                'lib/images/theteamlogo.png',
+                height: 40,
+              ),
+            ),
+            // the rest of the content
+
+                Column(
               children: [
                 const SizedBox(height: 50),
 
-                // logo
                 const Icon(
                   Icons.lock,
                   size: 100,
                 ),
-
                 const SizedBox(height: 50),
-
                 // welcome back, you've been missed!
                 Text(
                   'Welcome back you\'ve been missed!',
@@ -47,27 +61,21 @@ class LoginPage extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-
                 const SizedBox(height: 25),
-
                 // email textfield
                 MyTextField(
                   controller: emailController,
                   hintText: 'Username: test@gmail.com',
                   obscureText: false,
                 ),
-
                 const SizedBox(height: 10),
-
                 // password textfield
                 MyTextField(
                   controller: passwordController,
                   hintText: 'Password: test123',
                   obscureText: true,
                 ),
-
                 const SizedBox(height: 10),
-
                 // forgot password?
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -81,16 +89,12 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 25),
-
                 // sign in button
                 MyButton(
                   onTap: signUserIn,
                 ),
-
                 const SizedBox(height: 50),
-
                 // or continue with
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -118,9 +122,7 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                 ),
-
                 const SizedBox(height: 50),
-
                 // google + apple sign in buttons
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -128,14 +130,28 @@ class LoginPage extends StatelessWidget {
                     // google button
                     SquareTile(imagePath: 'lib/images/google.png'),
 
+
                     SizedBox(width: 15),
 
                     // apple button
                     SquareTile(imagePath: 'lib/images/apple.png'),
 
+                    /////////////////////////// I added these buttons //////////////////////////////
+
                     SizedBox(width: 15),
                     // facebook button
                     SquareTile(imagePath: 'lib/images/facebook.png'),
+
+
+                    //////////////////////////////////////////////////////////////////////////////////////////
+                  ],
+                ),
+
+                const SizedBox(height: 30),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
 
                     SizedBox(width: 15),
                     // Linkedin button
@@ -172,7 +188,9 @@ class LoginPage extends StatelessWidget {
                 const SizedBox(height: 30),
               ],
             ),
-          ),
+          ],),
+        ],),
+      ),
         ),
       ),
     );
