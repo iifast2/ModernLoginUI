@@ -29,6 +29,13 @@
             {
               "client_id": "846946449640-ecdvevn22rpl1ac21i2u3rhhb0t7rfgc.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "846946449640-1af3r43hdi0u8r767l7p2o8up4henarr.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.modernlogintute"
+              }
             }
           ]
         }
