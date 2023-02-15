@@ -142,7 +142,6 @@ class LoginPage extends StatelessWidget {
                     // facebook button
                     SquareTile(imagePath: 'lib/images/facebook.png'),
 
-
                     //////////////////////////////////////////////////////////////////////////////////////////
                   ],
                 ),
