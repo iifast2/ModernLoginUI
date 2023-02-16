@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     // show a loading circle while the user logs in ~ because that will take a lil bit of time
     // https://stackoverflow.com/a/63993275/10216101
 
-   showDialog(context: this.context, builder: (context){
+   showDialog(context: context, builder: (context){
      return const Center(
        child: CircularProgressIndicator(),
 
@@ -45,20 +45,58 @@ class _LoginPageState extends State<LoginPage> {
      );
 
    } on FirebaseAuthException catch (e) {
+
+      // this will pop the circle then shows the errors !
+     Navigator.pop(context);
+
+     // WRONG EMAIL
      if(e.code == 'user-not-found'){
+         // show error to user
+       WrongEmailMessage();
        print('No user found for that email !!!!');
+
+
+       // WRONG PASSWORD
      }else if(e.code == 'wrong-password'){
+
+
+        // show error to user
+       WrongPasswordMessage();
+       // this will print in the console !!
        print('Wrong password !!!!');
      }
    }
 
 
     // pop the loading circle ~ after it loads , this will make it go away
+    Navigator.pop(context);
+  }
 
-    Navigator.pop(this.context);
 
+
+
+
+  void WrongEmailMessage(){
+    showDialog(context: context, builder: (context){
+      return const AlertDialog(
+        title: Text('Incorrect Email'),
+       );
+      },
+    );
+  }
+
+  void WrongPasswordMessage(){
+    showDialog(context: context, builder: (context){
+      return const AlertDialog(
+        title: Text('Incorrect Password'),
+      );
+    },
+    );
 
   }
+
+
+
 
   @override
   Widget build(BuildContext context) {
