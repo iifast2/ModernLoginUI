@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class MyButton extends StatefulWidget {
   final Function()? onTap;
+  final String text;
 
-  const MyButton({Key? key, required this.onTap}) : super(key: key);
+  const MyButton({Key? key, required this.onTap, required this.text}) : super(key: key);
 
   @override
   _MyButtonState createState() => _MyButtonState();
@@ -12,8 +13,10 @@ class MyButton extends StatefulWidget {
 class _MyButtonState extends State<MyButton> {
   bool _isHovering = false;
 
+
   @override
   Widget build(BuildContext context) {
+
     return MouseRegion(
       onEnter: (_) => setState(() => _isHovering = true),
       onExit: (_) => setState(() => _isHovering = false),
@@ -27,10 +30,10 @@ class _MyButtonState extends State<MyButton> {
             borderRadius: BorderRadius.circular(8),
             border: Border.all(color: Colors.black),
           ),
-          child: const Center(
+          child: Center(
             child: Text(
-              "Sign In",
-              style: TextStyle(
+              widget.text,
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 16,

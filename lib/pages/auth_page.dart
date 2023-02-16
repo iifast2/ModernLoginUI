@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/pages/home_page.dart';
 import 'package:modernlogintute/pages/login_page.dart';
+import 'login_or_register_page.dart';
 
 
 class AuthPage extends StatelessWidget {
@@ -20,7 +21,7 @@ class AuthPage extends StatelessWidget {
               return HomePage();
             }
             else {
-              return LoginPage();
+              return LoginOrRegisterPage();
             }
 
 
