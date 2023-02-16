@@ -45,13 +45,13 @@ class _LoginPageState extends State<LoginPage> {
       // WRONG EMAIL
       if (e.code == 'user-not-found') {
         // show error to user
-        WrongEmailMessage();
+        wrongEmailMessage();
         print('No user found for that email !!!!');
 
         // WRONG PASSWORD
       } else if (e.code == 'wrong-password') {
         // show error to user
-        WrongPasswordMessage();
+        wrongPasswordMessage();
         // this will print in the console !!
         print('Wrong password !!!!');
       }
@@ -61,7 +61,10 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.pop(context);
   }
 
-  void WrongEmailMessage() {
+  // 1:52 / 8:48
+  
+
+  void wrongEmailMessage() {
     // this doesn't work on web !!? it doesn't show dialog
     showDialog(
       context: context,
@@ -73,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void WrongPasswordMessage() {
+  void wrongPasswordMessage() {
     showDialog(
       context: context,
       builder: (context) {
