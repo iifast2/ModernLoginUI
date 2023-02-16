@@ -12,6 +12,7 @@ class HomePage extends StatelessWidget {
     FirebaseAuth.instance.signOut();
   }
 
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,22 +1,63 @@
+//import 'dart:js';
+//import 'package:path/path.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
 import 'package:modernlogintute/components/square_tile.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   LoginPage({super.key});
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   // text editing controllers
   final emailController = TextEditingController();
+
   final passwordController = TextEditingController();
 
   // sign user in method
   void signUserIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailController.text,
-      password: passwordController.text,
-    );
+
+    // show a loading circle while the user logs in ~ because that will take a lil bit of time
+    // https://stackoverflow.com/a/63993275/10216101
+
+   showDialog(context: this.context, builder: (context){
+     return const Center(
+       child: CircularProgressIndicator(),
+
+
+
+     );
+
+   },);
+
+     // Sign in
+
+   try{
+     await FirebaseAuth.instance.signInWithEmailAndPassword(
+       email: emailController.text,
+       password: passwordController.text,
+     );
+
+   } on FirebaseAuthException catch (e) {
+     if(e.code == 'user-not-found'){
+       print('No user found for that email !!!!');
+     }else if(e.code == 'wrong-password'){
+       print('Wrong password !!!!');
+     }
+   }
+
+
+    // pop the loading circle ~ after it loads , this will make it go away
+
+    Navigator.pop(this.context);
+
+
   }
 
   @override
@@ -65,14 +106,14 @@ class LoginPage extends StatelessWidget {
                 // email textfield
                 MyTextField(
                   controller: emailController,
-                  hintText: 'Username: test@gmail.com',
+                  hintText: 'Email: admin@gmail.com',
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
                 // password textfield
                 MyTextField(
                   controller: passwordController,
-                  hintText: 'Password: test123',
+                  hintText: 'Password: admin123',
                   obscureText: true,
                 ),
                 const SizedBox(height: 10),
