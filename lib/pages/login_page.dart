@@ -15,14 +15,10 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // text editing controllers
   final emailController = TextEditingController();
-
   final passwordController = TextEditingController();
 
-  // sign user in method
-  void signUserIn() async {
-    // show a loading circle while the user logs in ~ because that will take a lil bit of time
-    // https://stackoverflow.com/a/63993275/10216101
-
+  void signInAnonymously() async {
+    // show a loading circle while the user logs in
     showDialog(
       context: context,
       builder: (context) {
@@ -32,61 +28,80 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
 
-    // Sign in
+    // Sign in anonymously
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+    } on FirebaseAuthException catch (e) {
+      // hide the loading circle
+      Navigator.pop(context);
+
+      // show error to user
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(e.message ?? 'An unknown error occurred.'),
+        ),
+      );
+    }
+
+    // hide the loading circle
+    Navigator.pop(context);
+  }
+
+
+/////////////////////////////////////////////////////////
+// sign user in method
+  void signUserIn() async {
+    // show a loading circle while the user logs in ~ because that will take a lil bit of time
+    // https://stackoverflow.com/a/63993275/10216101
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
 
     try {
+      // Sign in
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
     } on FirebaseAuthException catch (e) {
-      // this will pop the circle then shows the errors !
-      Navigator.pop(context);
-
-      // WRONG EMAIL
+      // show error to user
       if (e.code == 'user-not-found') {
-        // show error to user
         wrongEmailMessage();
-        print('No user found for that email !!!!');
-
-        // WRONG PASSWORD
       } else if (e.code == 'wrong-password') {
-        // show error to user
         wrongPasswordMessage();
-        // this will print in the console !!
-        print('Wrong password !!!!');
       }
-    }
 
+      // return from the method to avoid calling Navigator.pop(context) twice
+      return;
+    }
     // pop the loading circle ~ after it loads , this will make it go away
     Navigator.pop(context);
   }
 
-  // 1:52 / 8:48
-
-
   void wrongEmailMessage() {
-    // this doesn't work on web !!? it doesn't show dialog
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Incorrect Email'),
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Incorrect Email'),
+      ),
     );
   }
 
   void wrongPasswordMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Incorrect Password'),
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Incorrect Password'),
+      ),
     );
   }
+
+
+/////////////////////////////////////////////////////////
+
 
   @override
   Widget build(BuildContext context) {
@@ -120,8 +135,11 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.lock,
                           size: 100,
                         ),
+
                         const SizedBox(height: 50),
                         // welcome back, you've been missed!
+
+
                         Text(
                           'Welcome back you\'ve been missed!',
                           style: TextStyle(
@@ -129,22 +147,34 @@ class _LoginPageState extends State<LoginPage> {
                             fontSize: 16,
                           ),
                         ),
+
+
                         const SizedBox(height: 25),
                         // email textfield
+
+
                         MyTextField(
                           controller: emailController,
                           hintText: 'Email: admin@gmail.com',
                           obscureText: false,
                         ),
+
+
                         const SizedBox(height: 10),
                         // password textfield
+
+
                         MyTextField(
                           controller: passwordController,
                           hintText: 'Password: admin123',
                           obscureText: true,
                         ),
+
+
                         const SizedBox(height: 10),
                         // forgot password?
+
+
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
                           child: Row(
@@ -157,14 +187,23 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                         ),
+
+
                         const SizedBox(height: 25),
                         // sign in button
+
+
                         MyButton(
                           text: "Sign in",
                           onTap: signUserIn,
                         ),
+
+
                         const SizedBox(height: 50),
                         // or continue with
+
+
+
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
                           child: Row(
@@ -192,22 +231,33 @@ class _LoginPageState extends State<LoginPage> {
                             ],
                           ),
                         ),
+
+
+
+
                         const SizedBox(height: 50),
+
+
                         // google + apple sign in buttons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             // google button
-                            SquareTile(imagePath: 'lib/images/google.png'),
 
-                            SizedBox(width: 15),
+
+                            SquareTile(imagePath: 'lib/images/google.png', onTap: (){}),
+
+                            const SizedBox(width: 15),
 
                             // apple button
-                            SquareTile(imagePath: 'lib/images/apple.png'),
+                            SquareTile(imagePath: 'lib/images/apple.png', onTap: (){}),
 
-                            SizedBox(width: 15),
+                            const SizedBox(width: 15),
                             // facebook button
-                            SquareTile(imagePath: 'lib/images/facebook.png'),
+                            SquareTile(imagePath: 'lib/images/facebook.png', onTap: (){}),
+
+
+
                           ],
                         ),
 
@@ -215,16 +265,39 @@ class _LoginPageState extends State<LoginPage> {
 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            SizedBox(width: 15),
-                            // Linkedin button
-                            SquareTile(imagePath: 'lib/images/linkedin.png'),
+                          children: [
 
-                            SizedBox(width: 15),
+                            const SizedBox(width: 15),
+                            // Linkedin button
+                            SquareTile(imagePath: 'lib/images/linkedin.png', onTap: (){} ),
+
+
+                            const SizedBox(width: 15),
                             // anonymous button
-                            SquareTile(imagePath: 'lib/images/anonymous.png'),
+
+                            SquareTile(
+                              imagePath: 'lib/images/anonymous.png',
+                              onTap: signInAnonymously,
+                            )
+
+
+
                           ],
                         ),
+
+                        const SizedBox(height: 30),
+
+/*
+                          anonymous-sign-in button
+                        MyButton(
+                          text: "Anonymous Sign-in",
+                          onTap: () async {
+                            final userCredential = await FirebaseAuth.instance.signInAnonymously();
+
+                          },
+                        ),
+
+*/
 
                         const SizedBox(height: 30),
 

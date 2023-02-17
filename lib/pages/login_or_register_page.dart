@@ -22,7 +22,6 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
 
        showLoginPage = !showLoginPage;
 
-
      });
    }
 
