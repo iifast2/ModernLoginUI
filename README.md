@@ -9,19 +9,24 @@
 
 ![Image](https://i.imgur.com/8JHEdN0.png)
 
+
+![Image](https://i.imgur.com/TAZCin0.png)
+
+
+
 <br/>
 
 
 
-### Email Verification / Notification ! 
+### Email Verification ( on sign-up ) / Notification ! 
+
+this will only sign you in and redirects you to the homepage if you do verification
 
 ![Image](https://i.imgur.com/Cjn3vuh.png)
 
 ![Image](https://i.imgur.com/f8tWels.png)
 
 ![Image](https://i.imgur.com/HUKqlKo.png)
-
-
 
 
 
