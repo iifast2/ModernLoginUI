@@ -71,11 +71,7 @@ class _LoginPageState extends State<LoginPage> {
       );
     } on FirebaseAuthException catch (e) {
       // show error to user
-      if (e.code == 'user-not-found') {
-        wrongEmailMessage();
-      } else if (e.code == 'wrong-password') {
-        wrongPasswordMessage();
-      }
+      signUserInErrorMessages(e, context);
 
       // return from the method to avoid calling Navigator.pop(context) twice
       return;
@@ -84,18 +80,29 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.pop(context);
   }
 
-  void wrongEmailMessage() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Incorrect Email'),
-      ),
-    );
-  }
+  void signUserInErrorMessages(FirebaseAuthException e, BuildContext context) {
+    String errorMessage = '';
 
-  void wrongPasswordMessage() {
+    switch (e.code) {
+      case 'user-not-found':
+        errorMessage = 'No user found for that email.';
+        break;
+      case 'wrong-password':
+        errorMessage = 'Wrong password provided for that user.';
+        break;
+      case 'invalid-email':
+        errorMessage = 'The email address is not valid.';
+        break;
+      case 'user-disabled':
+        errorMessage = 'The user account has been disabled.';
+        break;
+      default:
+        errorMessage = 'An undefined error happened.';
+    }
+
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Incorrect Password'),
+      SnackBar(
+        content: Text(errorMessage),
       ),
     );
   }
@@ -318,13 +325,13 @@ class _LoginPageState extends State<LoginPage> {
 
                               onTap: widget.onTap,
 
-                               child: const Text(
-                              'Register now',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
+                              child: const Text(
+                                'Register now',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
                             ),
 
 
