@@ -17,6 +17,9 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
+
+
+
   void signInAnonymously() async {
     // show a loading circle while the user logs in
     showDialog(
@@ -34,7 +37,6 @@ class _LoginPageState extends State<LoginPage> {
     } on FirebaseAuthException catch (e) {
       // hide the loading circle
       Navigator.pop(context);
-
       // show error to user
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -42,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     }
-
     // hide the loading circle
     Navigator.pop(context);
   }
@@ -98,7 +99,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
 
 /////////////////////////////////////////////////////////
 

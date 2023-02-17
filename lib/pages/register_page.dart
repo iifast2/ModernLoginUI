@@ -6,9 +6,8 @@ import 'package:modernlogintute/components/square_tile.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
+
   const RegisterPage({super.key, required this.onTap});
-
-
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -20,65 +19,51 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-  // sign user up method
+
+
   void signUserUp() async {
-
-
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-
-    // try creating the user
-
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
-      );
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: emailController.text, password: passwordController.text);
+      User? user = userCredential.user;
+      await user?.sendEmailVerification(); // This sends the verification email
+      print('Verification email sent to ${user?.email}');
     } on FirebaseAuthException catch (e) {
-
-
-      // WRONG EMAIL :
-      if (e.code == 'user-not-found') {
-        // show error to user
-        wrongEmailMessage();
-        print('No user found for that email !!!!');
-        // WRONG PASSWORD :
-      } else if (e.code == 'wrong-password') {
-        // show error to user
-        wrongPasswordMessage();
-        print('Wrong password !!!!');
-      }
+      signUserUpErrorMessages(e, context);
+    } catch (e) {
+      print(e);
     }
-     Navigator.pop(context);
   }
 
-  void wrongEmailMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Incorrect Email'),
-        );
-      },
+  void signUserUpErrorMessages(FirebaseAuthException e, BuildContext context) {
+    String errorMessage = '';
+
+    if (e.code == 'weak-password') {
+      errorMessage = 'The password provided is too weak.';
+    } else if (e.code == 'email-already-in-use') {
+      errorMessage = 'The account already exists for that email.';
+    } else if (e.code == 'invalid-email') {
+      errorMessage = 'The email address is not valid.';
+    } else if (e.code == 'user-not-found') {
+      errorMessage = 'No user found for that email.';
+    } else if (e.code == 'wrong-password') {
+      errorMessage = 'Wrong password provided for that user.';
+    } else if (e.code == 'user-disabled') {
+      errorMessage = 'The user account has been disabled.';
+    } else {
+      errorMessage = 'An undefined error happened.';
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(errorMessage),
+        duration: Duration(seconds: 3),
+      ),
     );
   }
 
-  void wrongPasswordMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Incorrect Password'),
-        );
-      },
-    );
-  }
+
 
 
   @override
@@ -105,15 +90,24 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     // the rest of the content
 
+
+
+
                     Column(
                       children: [
+
                         const SizedBox(height: 50),
+
 
                         const Icon(
                           Icons.account_box_rounded,
                           size: 100,
                         ),
+
+
                         const SizedBox(height: 50),
+
+
                         // welcome back, you've been missed!
                         Text(
                           'Let\'s create an account for you!',
@@ -122,13 +116,18 @@ class _RegisterPageState extends State<RegisterPage> {
                             fontSize: 16,
                           ),
                         ),
+
+
                         const SizedBox(height: 25),
+
+
                         // email textfield
                         MyTextField(
                           controller: emailController,
                           hintText: 'Email',
                           obscureText: false,
                         ),
+
                         const SizedBox(height: 10),
 
                         // password textfield
@@ -147,10 +146,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           obscureText: true,
                         ),
 
-
                         const SizedBox(height: 10),
-
-
 
                         // forgot password?
                         Padding(
@@ -169,21 +165,16 @@ class _RegisterPageState extends State<RegisterPage> {
 
                         const SizedBox(height: 25),
 
-
+                        
                         // sign in button
                         MyButton(
                           text: "Sign up",
                           onTap: signUserUp,
                         ),
 
-
                         const SizedBox(height: 50),
 
-
-
                         const SizedBox(height: 30),
-
-
 
                         // Already a member? Sign in now / Login Now !
                         Row(
@@ -195,22 +186,21 @@ class _RegisterPageState extends State<RegisterPage> {
                             ),
 
 
-
                             const SizedBox(width: 4),
 
+
+
                             GestureDetector(
-
                               onTap: widget.onTap,
-
                               child: const Text(
                                 'Login now',
                                 style: TextStyle(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
+
                                 ),
                               ),
                             ),
-
 
 
                           ],
