@@ -18,9 +18,12 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
 
 
+/*
+// my old method without confirm password
   void signUserUp() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -35,6 +38,37 @@ class _RegisterPageState extends State<RegisterPage> {
       print(e);
     }
   }
+
+*/
+
+  void signUserUp() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Passwords do not match.'),
+          duration: const Duration(seconds: 3),
+        ),
+      );
+      return;
+    }
+
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      User? user = userCredential.user;
+      await user?.sendEmailVerification(); // This sends the verification email
+      print('Verification email sent to ${user?.email}');
+    } on FirebaseAuthException catch (e) {
+      signUserUpErrorMessages(e, context);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+
+
+
 
   void signUserUpErrorMessages(FirebaseAuthException e, BuildContext context) {
     String errorMessage = '';
@@ -58,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(errorMessage),
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
       ),
     );
   }
@@ -141,7 +175,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                         // confirm password textfield
                         MyTextField(
-                          controller: passwordController,
+                          controller: confirmPasswordController,
                           hintText: 'Confirm Password',
                           obscureText: true,
                         ),

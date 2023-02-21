@@ -46,11 +46,30 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Text(
+
+
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+
+            const SizedBox(height: 50),
+
+            const Icon(
+              Icons.home,
+              size: 100,
+            ),
+
+            const SizedBox(height: 50),
+
+        Text(
           "Logged in As :  ${user.email!}",
-          style: const TextStyle(fontSize: 40),
+           style: const TextStyle(
+            color: Colors.black,
+            fontSize: 60,
+          ),
         ),
+      ],
       ),
-    );
+    ),);
   }
 }
