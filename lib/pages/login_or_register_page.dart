@@ -40,6 +40,7 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
       );
       }
   }
+<<<<<<< Updated upstream
 }
 
 
@@ -57,3 +58,6 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
 
 
 
+=======
+}
+>>>>>>> Stashed changes

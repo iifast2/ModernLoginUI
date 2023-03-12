@@ -2,11 +2,15 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
-import 'package:modernlogintute/components/square_tile.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
+<<<<<<< Updated upstream
   const RegisterPage({super.key, required this.onTap});
+=======
+
+  const RegisterPage({Key? key, required this.onTap}) : super(key: key);
+>>>>>>> Stashed changes
 
 
 
@@ -15,10 +19,9 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  // text editing controllers
-
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+<<<<<<< Updated upstream
 
   // sign user up method
   void signUserUp() async {
@@ -39,6 +42,19 @@ class _RegisterPageState extends State<RegisterPage> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
+=======
+  final confirmPasswordController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  String? initialCountry = 'US';
+
+  void signUserUp() async {
+    if (passwordController.text != confirmPasswordController.text) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Passwords do not match.'),
+          duration: Duration(seconds: 3),
+        ),
+>>>>>>> Stashed changes
       );
     } on FirebaseAuthException catch (e) {
 
@@ -58,6 +74,7 @@ class _RegisterPageState extends State<RegisterPage> {
      Navigator.pop(context);
   }
 
+<<<<<<< Updated upstream
   void wrongEmailMessage() {
     showDialog(
       context: context,
@@ -81,6 +98,35 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
 
+=======
+  void signUserUpErrorMessages(FirebaseAuthException e, BuildContext context) {
+    String errorMessage = '';
+
+    if (e.code == 'weak-password') {
+      errorMessage = 'The password provided is too weak.';
+    } else if (e.code == 'email-already-in-use') {
+      errorMessage = 'The account already exists for that email.';
+    } else if (e.code == 'invalid-email') {
+      errorMessage = 'The email address is not valid.';
+    } else if (e.code == 'user-not-found') {
+      errorMessage = 'No user found for that email.';
+    } else if (e.code == 'wrong-password') {
+      errorMessage = 'Wrong password provided for that user.';
+    } else if (e.code == 'user-disabled') {
+      errorMessage = 'The user account has been disabled.';
+    } else {
+      errorMessage = 'An undefined error happened.';
+    }
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(errorMessage),
+        duration: Duration(seconds: 3),
+      ),
+    );
+  }
+
+>>>>>>> Stashed changes
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,10 +138,8 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 50),
-                // stack the logo image over the rest of the content
                 Stack(
                   children: [
-                    // logo
                     Positioned(
                       right: 5,
                       child: Image.asset(
@@ -103,7 +147,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         height: 40,
                       ),
                     ),
+<<<<<<< Updated upstream
                     // the rest of the content
+=======
+
+>>>>>>> Stashed changes
 
                     Column(
                       children: [
