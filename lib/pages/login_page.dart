@@ -24,10 +24,9 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-
+ 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-
-<<<<<<< Updated upstream
+ 
   void signInAnonymously() async {
     // show a loading circle while the user logs in
     showDialog(
@@ -45,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
     } on FirebaseAuthException catch (e) {
       // hide the loading circle
       Navigator.pop(context);
-
       // show error to user
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -53,30 +51,11 @@ class _LoginPageState extends State<LoginPage> {
         ),
       );
     }
-
     // hide the loading circle
     Navigator.pop(context);
   }
 
-=======
-
-  // sign in anonymously
-    void signInAnonymously() async {
-      try {
-        UserCredential userCredential =
-        await FirebaseAuth.instance.signInAnonymously();
-        User? user = userCredential.user;
-        print('Signed in anonymously as ${user?.uid}');
-        // Navigate to the home page
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
-      } catch (e) {
-        print(e);
-      }
-    }
->>>>>>> Stashed changes
+ 
 
 /////////////////////////////////////////////////////////
 // sign user in method
@@ -91,16 +70,39 @@ class _LoginPageState extends State<LoginPage> {
           );
         },
       );
-<<<<<<< Updated upstream
+ 
     } on FirebaseAuthException catch (e) {
       // show error to user
-      if (e.code == 'user-not-found') {
-        wrongEmailMessage();
-      } else if (e.code == 'wrong-password') {
-        wrongPasswordMessage();
-      }
-=======
->>>>>>> Stashed changes
+ 
+      signUserInErrorMessages(e, context);
+
+      // return from the method to avoid calling Navigator.pop(context) twice
+      return;
+    }
+    // pop the loading circle ~ after it loads , this will make it go away
+    Navigator.pop(context);
+  }
+
+  void signUserInErrorMessages(FirebaseAuthException e, BuildContext context) {
+    String errorMessage = '';
+
+    switch (e.code) {
+      case 'user-not-found':
+        errorMessage = 'No user found for that email.';
+        break;
+      case 'wrong-password':
+        errorMessage = 'Wrong password provided for that user.';
+        break;
+      case 'invalid-email':
+        errorMessage = 'The email address is not valid.';
+        break;
+      case 'user-disabled':
+        errorMessage = 'The user account has been disabled.';
+        break;
+      default:
+        errorMessage = 'An undefined error happened.';
+    }
+ 
 
       try {
         // Sign in
@@ -112,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
         // show error to user
         signUserInErrorMessages(e, context);
 
-<<<<<<< Updated upstream
+ 
   void wrongEmailMessage() {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -120,51 +122,13 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-=======
-        // return from the method to avoid calling Navigator.pop(context) twice
-        return;
-      }
-      // pop the loading circle ~ after it loads , this will make it go away
-      Navigator.pop(context);
-    }
-
-    void signUserInErrorMessages(FirebaseAuthException e,
-        BuildContext context) {
-      String errorMessage = '';
-
-      switch (e.code) {
-        case 'user-not-found':
-          errorMessage = 'No user found for that email.';
-          break;
-        case 'wrong-password':
-          errorMessage = 'Wrong password provided for that user.';
-          break;
-        case 'invalid-email':
-          errorMessage = 'The email address is not valid.';
-          break;
-        case 'user-disabled':
-          errorMessage = 'The user account has been disabled.';
-          break;
-        default:
-          errorMessage = 'An undefined error happened.';
-      }
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(errorMessage),
-        ),
-      );
-    }
->>>>>>> Stashed changes
-
-  void wrongPasswordMessage() {
+ 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Incorrect Password'),
+      SnackBar(
+        content: Text(errorMessage),
       ),
     );
   }
-
 
 /////////////////////////////////////////////////////////
 
@@ -422,30 +386,20 @@ class _LoginPageState extends State<LoginPage> {
                               const SizedBox(width: 4),
 
                               GestureDetector(
-
-                                onTap: widget.onTap,
-
-<<<<<<< Updated upstream
+ 
                               onTap: widget.onTap,
 
-                               child: const Text(
-                              'Register now',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            ),
-=======
-                                child: const Text(
-                                  'Register now',
-                                  style: TextStyle(
-                                    color: Colors.blue,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              child: const Text(
+                                'Register now',
+                                style: TextStyle(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
->>>>>>> Stashed changes
+                            ),
+ 
+                            ),  // recheck this ),
+ 
 
 
                             ],
