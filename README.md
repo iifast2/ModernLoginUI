@@ -117,6 +117,8 @@ The certificate uses the SHA1withRSA signature algorithm which is considered a s
 
 ### using Terminal 
 
+https://pub.dev/packages/google_sign_in_web
+
 ```
 flutter run -d chrome --web-hostname localhost --web-port 5000
 ```
