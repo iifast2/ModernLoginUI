@@ -39,11 +39,17 @@ this will only sign you in and redirects you to the homepage if you do verificat
 ![72692840-4960-4603-B21E-3BC8442AA19F](https://user-images.githubusercontent.com/29016489/206952739-29d2403c-c26b-472f-9f4d-fdc0e1458326.JPG)
 
 <br/>
+<br/>
 
-
+---
 
 ### Config Google Sign-in for android :
 
+
+
+![Image](https://i.imgur.com/xTv5LIC.png)
+
+<br/>
 
 ![Image](https://i.imgur.com/GGpEh1n.png)
 
@@ -63,6 +69,7 @@ https://developers.google.com/android/guides/client-auth?authuser=2&hl=en
 
 
 <br/> 
+<br/> 
 
 
 CMD (SHA1 & SHA256 ) :
@@ -71,6 +78,7 @@ Password : android
 ```
 keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
 ```
+
 
 
 ```
@@ -95,3 +103,10 @@ Version: 1
 Warning:
 The certificate uses the SHA1withRSA signature algorithm which is considered a security risk. This algorithm will be disabled in a future update.
 ```
+
+
+
+
+
+
+
