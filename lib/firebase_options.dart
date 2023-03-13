@@ -52,20 +52,6 @@ class DefaultFirebaseOptions {
     storageBucket: 'authtutorial-c1a70.appspot.com',
   );
 
-/*
-This is form the project settings
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: "AIzaSyDotn5EDpAkKH4u6ltBwMvz-ytP7AqzPrA",
-    authDomain: "authtutorial-c1a70.firebaseapp.com",
-    projectId: "authtutorial-c1a70",
-    storageBucket: "authtutorial-c1a70.appspot.com",
-    messagingSenderId: "846946449640",
-    appId: "1:846946449640:web:b3762a8cf3ce8d0713b15d",
-    measurementId: "G-HB7S3DMB5L"
-  );
-*/
-
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBmR0vZN4WhL09sXlA7JcOsbwnugTTiBUo',
     appId: '1:846946449640:android:2d2d85fc7b6d881013b15d',

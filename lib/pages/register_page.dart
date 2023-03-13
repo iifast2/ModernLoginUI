@@ -2,55 +2,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
+import 'package:modernlogintute/components/square_tile.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
- 
+
   const RegisterPage({super.key, required this.onTap});
- 
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  // text editing controllers
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
- 
   final confirmPasswordController = TextEditingController();
- 
 
 
-
-/*
-// my old method without confirm password
-  void signUserUp() async {
-    try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: emailController.text, password: passwordController.text);
-      User? user = userCredential.user;
-      await user?.sendEmailVerification(); // This sends the verification email
-      print('Verification email sent to ${user?.email}');
-    } on FirebaseAuthException catch (e) {
-      signUserUpErrorMessages(e, context);
-    } catch (e) {
-      print(e);
-    }
-  }
-
-*/
- 
-    try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
- 
-  final confirmPasswordController = TextEditingController();
-  final phoneNumberController = TextEditingController();
-  String? initialCountry = 'US';
-
- 
   void signUserUp() async {
     if (passwordController.text != confirmPasswordController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -58,7 +28,6 @@ class _RegisterPageState extends State<RegisterPage> {
           content: Text('Passwords do not match.'),
           duration: const Duration(seconds: 3),
         ),
- 
       );
       return;
     }
@@ -76,6 +45,9 @@ class _RegisterPageState extends State<RegisterPage> {
       print(e);
     }
   }
+
+
+
 
 
   void signUserUpErrorMessages(FirebaseAuthException e, BuildContext context) {
@@ -97,26 +69,17 @@ class _RegisterPageState extends State<RegisterPage> {
       errorMessage = 'An undefined error happened.';
     }
 
- 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(errorMessage),
         duration: const Duration(seconds: 3),
       ),
- 
-  void wrongEmailMessage() {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Incorrect Email'),
-        );
-      },
- 
     );
   }
 
- 
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,8 +91,10 @@ class _RegisterPageState extends State<RegisterPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const SizedBox(height: 50),
+                // stack the logo image over the rest of the content
                 Stack(
                   children: [
+                    // logo
                     Positioned(
                       right: 5,
                       child: Image.asset(
@@ -137,7 +102,11 @@ class _RegisterPageState extends State<RegisterPage> {
                         height: 40,
                       ),
                     ),
-  
+                    // the rest of the content
+
+
+
+
                     Column(
                       children: [
 

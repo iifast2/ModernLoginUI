@@ -3,8 +3,8 @@
 * Modern UI
 * Firebase Authentication with e-mail & password
 * E-mail verification when user sign-up ( user needs to activate his account when he sign-up , an e-mail will be sent to him )
-* Anonymous Login 
-* 
+* Anonymous Login
+*
 
 ### ✌&ensp;Preview
 
@@ -22,7 +22,7 @@
 
 
 
-### Email Verification ( on sign-up ) / Notification ! 
+### Email Verification ( on sign-up ) / Notification !
 
 this will only sign you in and redirects you to the homepage if you do verification
 
@@ -31,18 +31,18 @@ this will only sign you in and redirects you to the homepage if you do verificat
 ![Image](https://i.imgur.com/f8tWels.png)
 
 ![Image](https://i.imgur.com/d6lUwC1.png)
- 
+
 ![Image](https://i.imgur.com/HUKqlKo.png)
 
 
- 
+
 ![72692840-4960-4603-B21E-3BC8442AA19F](https://user-images.githubusercontent.com/29016489/206952739-29d2403c-c26b-472f-9f4d-fdc0e1458326.JPG)
 
 <br/>
 
 
 
-### Config Google Sign-in for android : 
+### Config Google Sign-in for android :
 
 
 ![Image](https://i.imgur.com/GGpEh1n.png)
@@ -65,8 +65,8 @@ https://developers.google.com/android/guides/client-auth?authuser=2&hl=en
 <br/> 
 
 
-CMD (SHA1 & SHA256 ) : 
-Password : android 
+CMD (SHA1 & SHA256 ) :
+Password : android
 
 ```
 keytool -list -v -alias androiddebugkey -keystore %USERPROFILE%\.android\debug.keystore
