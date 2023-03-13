@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:modernlogintute/pages/login_or_register_page.dart';
+import 'package:modernlogintute/pages/login_page.dart';
 
 class HomePage extends StatelessWidget {
+ 
   HomePage({Key? key}) : super(key: key);
 
   final user = FirebaseAuth.instance.currentUser!;
@@ -11,8 +14,10 @@ class HomePage extends StatelessWidget {
     FirebaseAuth.instance.signOut();
   }
 
+
   @override
   Widget build(BuildContext context) {
+ 
     if (!user.emailVerified) {
       return Scaffold(
         body: Center(
@@ -38,7 +43,7 @@ class HomePage extends StatelessWidget {
         ),
       );
     }
-
+ 
     return Scaffold(
       appBar: AppBar(
         actions: [
@@ -46,7 +51,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
       body: Center(
-
+ 
 
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -71,5 +76,6 @@ class HomePage extends StatelessWidget {
       ],
       ),
     ),);
+
   }
 }
