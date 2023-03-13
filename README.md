@@ -56,6 +56,8 @@ this will only sign you in and redirects you to the homepage if you do verificat
 
 <img src="https://i.imgur.com/Y1kasu5.png" width="300">
 
+ <br/>
+ 
 <img src="https://i.imgur.com/8gy3iOO.png" width="300">
 
 <img src="https://i.imgur.com/0ic8n18.png" width="300">
