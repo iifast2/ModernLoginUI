@@ -4,7 +4,8 @@
 * Firebase Authentication with e-mail & password
 * E-mail verification when user sign-up ( user needs to activate his account when he sign-up , an e-mail will be sent to him )
 * Anonymous Login
-*
+* Google Sign in ( web & android SHA1 SHA2)
+* 
 
 ### ✌&ensp;Preview
 
@@ -68,6 +69,7 @@ https://console.cloud.google.com/apis/credentials
 https://developers.google.com/android/guides/client-auth?authuser=2&hl=en
 
 
+
 <br/> 
 <br/> 
 
@@ -104,6 +106,25 @@ Warning:
 The certificate uses the SHA1withRSA signature algorithm which is considered a security risk. This algorithm will be disabled in a future update.
 ```
 
+
+<br/>
+<br/>
+
+---
+
+
+# Run your App  
+
+### using Terminal 
+
+```
+flutter run -d chrome --web-hostname localhost --web-port 5000
+```
+
+
+### using android studio config 
+
+![Image](https://i.imgur.com/27Aa83i.png)
 
 
 
