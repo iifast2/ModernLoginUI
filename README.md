@@ -1,17 +1,49 @@
-# MODERN LOGIN / SIGN UP UI x FLUTTER
+<h1 align="center"> Flutter Authentication x Firebase x Modern UI</h1>
+<h3 align="center"> Web - Android - IOS </h3>
+
+<br/> 
+ 
+<div align="center">
+  
+  <a href="https://github.com/iifast2/ModernLoginUI/tree/3-Google-Sign-in-(web)">
+    <img src="https://i.imgur.com/Cl3REuU.png" alt="Logo" width="80" height="80">
+  </a>
+  
+<a href="https://github.com/iifast2/ModernLoginUI/tree/3-Google-Sign-in-(web)">
+    <img src="https://i.imgur.com/rTRrlFb.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
 
 
+* Modern UI ( Mainly focused on web and android for this version )
+* Firebase Authentication with e-mail & password
+* E-mail verification when user sign-up ( user needs to activate his account when he sign-up , an e-mail will be sent to him )
+* Anonymous Login
+* Google Sign in ( web & android )
+* 
 
 ### ✌&ensp;Preview
 
-![Image](https://i.imgur.com/jUuQWM1.png)
-
-
-![Image](https://i.imgur.com/8JHEdN0.png)
+<p align="center">
+  <img src="https://i.imgur.com/ZoDexFA.jpg" >
+</p>
 
 <br/>
 
+---
 
-![72692840-4960-4603-B21E-3BC8442AA19F](https://user-images.githubusercontent.com/29016489/206952739-29d2403c-c26b-472f-9f4d-fdc0e1458326.JPG)
+# Run your App  
+
+### using Terminal 
+
+```
+flutter run -d chrome --web-hostname localhost --web-port 5000
+```
+
+### using online IDE 
+
+https://flutlab.io/
+
+http://zapp.run/
 
 
