@@ -1,25 +1,43 @@
-# MODERN LOGIN / SIGN UP UI x FLUTTER
+<h1 align="center"> Flutter Authentication x Firebase x Modern UI</h1>
+<h3 align="center"> Web - Android - IOS </h3>
 
-* Modern UI
+<br/> 
+ 
+<div align="center">
+  
+  <a href="https://github.com/iifast2/ModernLoginUI/tree/3-Google-Sign-in-(web)">
+    <img src="https://i.imgur.com/Cl3REuU.png" alt="Logo" width="80" height="80">
+  </a>
+  
+<a href="https://github.com/iifast2/ModernLoginUI/tree/3-Google-Sign-in-(web)">
+    <img src="https://i.imgur.com/rTRrlFb.png" alt="Logo" width="80" height="80">
+  </a>
+</div>
+
+- Project info :
+  - project name : ModernLoginUI
+  - Package : com.example.modernlogintute
+
+
+* Modern UI ( Mainly focused on web and android for this version )
 * Firebase Authentication with e-mail & password
 * E-mail verification when user sign-up ( user needs to activate his account when he sign-up , an e-mail will be sent to him )
 * Anonymous Login
 * Google Sign in ( web & android SHA1 SHA2) : works on web and android [apk generated using https://flutlab.io/editor] 
- 
- [ project name : ModernLoginUI ]  [ Package : com.example.modernlogintute ]
-
 * 
 
 ### ✌&ensp;Preview
 
-![Image](https://i.imgur.com/jUuQWM1.png)
-
-
-![Image](https://i.imgur.com/8JHEdN0.png)
-
-
-![Image](https://i.imgur.com/TAZCin0.png)
-
+<p align="center">
+  <img src="https://i.imgur.com/ZoDexFA.jpg" >
+</p>
+  <br/><br/>
+ 
+<p align="center">
+  <img src="https://i.imgur.com/sAjKGfZ.png" width="300">
+  <img src="https://i.imgur.com/Aoc1Xvl.png" width="300">
+</p>
+<br/>
 
 
 <br/>
@@ -30,17 +48,19 @@
 
 this will only sign you in and redirects you to the homepage if you do verification
 
-![Image](https://i.imgur.com/Cjn3vuh.png)
+<p align="center">
 
-![Image](https://i.imgur.com/f8tWels.png)
+<img src="https://i.imgur.com/ER180d3.png" width="300">
 
-![Image](https://i.imgur.com/d6lUwC1.png)
+<img src="https://i.imgur.com/u57r4e9.png" width="300">
 
-![Image](https://i.imgur.com/HUKqlKo.png)
+<img src="https://i.imgur.com/Y1kasu5.png" width="300">
 
+<img src="https://i.imgur.com/8gy3iOO.png" width="300">
 
+<img src="https://i.imgur.com/0ic8n18.png" width="300">
 
-![72692840-4960-4603-B21E-3BC8442AA19F](https://user-images.githubusercontent.com/29016489/206952739-29d2403c-c26b-472f-9f4d-fdc0e1458326.JPG)
+</p>
 
 <br/>
 <br/>
@@ -56,26 +76,32 @@ https://stackoverflow.com/questions/64443888/flutter-cocoapodss-specs-repository
 
 ### Config Google Sign-in for web and android :
 
-![Image](https://i.imgur.com/T1yAvZz.png)
+<p align="center">
+<img src="https://i.imgur.com/4y7CwiK.png" width="300">
+</p>
 
 
-![Image](https://i.imgur.com/xTv5LIC.png)
-
-<br/>
-
-![Image](https://i.imgur.com/GGpEh1n.png)
-
+<p align="center">
+<img src="https://i.imgur.com/81OEu6E.png" width="300">
+<img src="https://i.imgur.com/RnoWMBj.png" width="300">
+</p>
 
 
-![Image](https://i.imgur.com/6oWnT0f.png)
+<p align="center">
+<img src="https://i.imgur.com/5Jc4hMN.png" width="600">
+</p>
+
+
 
 https://console.firebase.google.com/u/2/project/authtutorial-c1a70/settings/general/android:com.example.modernlogintute
 
 https://console.cloud.google.com/apis/credentials
 
 
+<p align="center">
+<img src="https://i.imgur.com/0AaUDsA.png" width="600">
+</p>
 
-![Image](https://i.imgur.com/xdsGDwa.png)
 
 https://developers.google.com/android/guides/client-auth?authuser=2&hl=en
 
@@ -139,8 +165,11 @@ flutter run -d chrome --web-hostname localhost --web-port 5000
 
 ### using android studio config 
 
-![Image](https://i.imgur.com/27Aa83i.png)
 
+
+<p align="center">
+<img src="https://i.imgur.com/ufngYUf.png" width="600">
+</p>
 
 
 ### using online IDE 
@@ -148,4 +177,5 @@ flutter run -d chrome --web-hostname localhost --web-port 5000
 https://flutlab.io/
 
 http://zapp.run/
+
 
