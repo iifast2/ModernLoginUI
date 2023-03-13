@@ -4,7 +4,7 @@
 * Firebase Authentication with e-mail & password
 * E-mail verification when user sign-up ( user needs to activate his account when he sign-up , an e-mail will be sent to him )
 * Anonymous Login
-* Google Sign in ( web & android SHA1 SHA2)
+* Google Sign in ( web & android SHA1 SHA2) : works on web and android
 * 
 
 ### ✌&ensp;Preview
@@ -44,8 +44,9 @@ this will only sign you in and redirects you to the homepage if you do verificat
 
 ---
 
-### Config Google Sign-in for android :
+### Config Google Sign-in for web and android :
 
+![Image](https://i.imgur.com/T1yAvZz.png)
 
 
 ![Image](https://i.imgur.com/xTv5LIC.png)
