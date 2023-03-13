@@ -324,6 +324,152 @@ const SizedBox(height: 50),
 
 ```
 
+# IOS config for firebase and Google Sign in :
+
+
+
+output without config 
+```
+Launching lib/main.dart on iPhone 12 in debug mode...
+
+Updating minimum iOS deployment target to 11.0.
+
+Upgrading project.pbxproj
+
+Upgrading AppFrameworkInfo.plist
+
+Upgrading Podfile
+
+Upgrading Info.plist
+
+Running pod install...                                           1,087ms
+
+CocoaPods' output:
+
+↳
+
+Error output from CocoaPods:
+
+↳
+
+Error: CocoaPods's specs repository is too out-of-date to satisfy dependencies.
+
+To update the CocoaPods specs, run:
+
+Error running pod install
+
+Error launching application on iPhone 12.
+
+ 🏁 Build finished at Monday, March 13th 2023, 7:50:44PM +01:00 🏁 
+
+ ❌ Build failed. Check the logs above 
+
+      Preparing
+
+    Analyzing dependencies
+
+    Inspecting targets to integrate
+
+      Using `ARCHS` setting to build architectures of target `Pods-Runner`: (``)
+
+    Fetching external sources
+
+    -> Fetching podspec for `Flutter` from `Flutter`
+
+    -> Fetching podspec for `firebase_auth` from `.symlinks/plugins/firebase_auth/ios`
+
+    firebase_auth: Using Firebase SDK version '10.3.0' defined in 'firebase_core'
+
+    -> Fetching podspec for `firebase_core` from `.symlinks/plugins/firebase_core/ios`
+
+    firebase_core: Using Firebase SDK version '10.3.0' defined in 'firebase_core'
+
+    -> Fetching podspec for `google_sign_in_ios` from `.symlinks/plugins/google_sign_in_ios/ios`
+
+    Resolving dependencies of `Podfile`
+
+      CDN: trunk Relative path: CocoaPods-version.yml exists! Returning local because checking is only performed in repo update
+
+      CDN: trunk Relative path: all_pods_versions_0_3_5.txt exists! Returning local because checking is only performed in repo update
+
+      CDN: trunk Relative path: Specs/0/3/5/Firebase/10.0.0/Firebase.podspec.json exists! Returning local because checking is only performed in repo update
+
+      CDN: trunk Relative path: all_pods_versions_d_4_0.txt exists! Returning local because checking is only performed in repo update
+
+      CDN: trunk Relative path: Specs/d/4/0/GoogleSignIn/6.2.4/GoogleSignIn.podspec.json exists! Returning local because checking is only performed in repo update
+
+    [!] CocoaPods could not find compatible versions for pod "Firebase/Auth":
+
+      In Podfile:
+
+        firebase_auth (from `.symlinks/plugins/firebase_auth/ios`) was resolved to 4.2.10, which depends on
+
+          Firebase/Auth (= 10.3.0)
+
+    None of your spec sources contain a spec satisfying the dependency: `Firebase/Auth (= 10.3.0)`.
+
+    You have either:
+
+     * out-of-date source repos which you can update with `pod repo update` or with `pod install --repo-update`.
+
+     * mistyped the name or version.
+
+     * not added the source repo that hosts the Podspec to your Podfile.
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/molinillo-0.8.0/lib/molinillo/resolution.rb:317:in `raise_error_unless_state'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/molinillo-0.8.0/lib/molinillo/resolution.rb:299:in `block in unwind_for_conflict'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/molinillo-0.8.0/lib/molinillo/resolution.rb:297:in `tap'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/molinillo-0.8.0/lib/molinillo/resolution.rb:297:in `unwind_for_conflict'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/molinillo-0.8.0/lib/molinillo/resolution.rb:257:in `process_topmost_state'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/molinillo-0.8.0/lib/molinillo/resolution.rb:182:in `resolve'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/molinillo-0.8.0/lib/molinillo/resolver.rb:43:in `resolve'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/resolver.rb:94:in `resolve'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/installer/analyzer.rb:1078:in `block in resolve_dependencies'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/user_interface.rb:64:in `section'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/installer/analyzer.rb:1076:in `resolve_dependencies'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/installer/analyzer.rb:124:in `analyze'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/installer.rb:416:in `analyze'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/installer.rb:241:in `block in resolve_dependencies'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/user_interface.rb:64:in `section'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/installer.rb:240:in `resolve_dependencies'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/installer.rb:161:in `install!'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/command/install.rb:52:in `run'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/claide-1.1.0/lib/claide/command.rb:334:in `run'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/lib/cocoapods/command.rb:52:in `run'
+
+    /Users/flutlab/.gem/ruby/2.6.0/gems/cocoapods-1.11.3/bin/pod:55:in `<top (required)>'
+
+    /Users/flutlab/.gem/ruby/2.6.0/bin/pod:23:in `load'
+
+    /Users/flutlab/.gem/ruby/2.6.0/bin/pod:23:in `<main>'
+
+    [!] Automatically assigning platform `iOS` with version `11.0` on target `Runner` because no platform was specified. Please specify a platform for this target in your Podfile. See `https://guides.cocoapods.org/syntax/podfile.html#platform`.
+
+  pod repo update
+
+No branch
+
+```
+
 
 
 

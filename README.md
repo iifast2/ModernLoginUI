@@ -47,6 +47,13 @@ this will only sign you in and redirects you to the homepage if you do verificat
 
 ---
 
+### Config Google Sign-in for ios :
+
+https://pub.dev/packages/google_sign_in
+
+https://stackoverflow.com/questions/64443888/flutter-cocoapodss-specs-repository-is-too-out-of-date-to-satisfy-dependencies
+
+
 ### Config Google Sign-in for web and android :
 
 ![Image](https://i.imgur.com/T1yAvZz.png)
@@ -121,6 +128,8 @@ The certificate uses the SHA1withRSA signature algorithm which is considered a s
 
 ### using Terminal 
 
+
+
 https://pub.dev/packages/google_sign_in_web
 
 ```
@@ -134,6 +143,9 @@ flutter run -d chrome --web-hostname localhost --web-port 5000
 
 
 
+### using online IDE 
 
+https://flutlab.io/
 
+http://zapp.run/
 
