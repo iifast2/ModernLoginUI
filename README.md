@@ -4,7 +4,7 @@
 * Firebase Authentication with e-mail & password
 * E-mail verification when user sign-up ( user needs to activate his account when he sign-up , an e-mail will be sent to him )
 * Anonymous Login
-* Google Sign in ( web & android SHA1 SHA2) : works on web and android
+* Google Sign in ( web & android SHA1 SHA2) : works on web and android [apk generated using https://flutlab.io/editor] 
 * 
 
 ### ✌&ensp;Preview
