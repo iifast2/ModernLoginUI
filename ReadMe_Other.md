@@ -1,3 +1,5 @@
+# Other Project Instructions 
+
 
 # flutter doctor -v 
 
@@ -61,6 +63,113 @@ Checking Android licenses is taking an unexpectedly long time...[√] Android to
 ! Doctor found issues in 1 category.
 ```
 
+
+
+
+
+
+<br/>
+<br/>
+
+## After I tested ( Screenshot blocker 02 - html2canvas ) : 
+
+### Ressources : 
+
+https://stackoverflow.com/q/74022831/10216101
+
+https://stackoverflow.com/questions/74022831/disable-screenshots-and-screen-recording-on-flutter-web
+
+https://dev.to/odinachi/how-to-block-screenshot-in-your-flutter-app-18d5
+
+https://mrgulshanyadav.medium.com/prevent-screenshot-and-video-recording-in-flutter-93839325d66c
+
+### Issue : 
+It's working but consumes too much ressources !!!
+This (issue) is what I get when I run the project ! and it keeps going down #33 , #34 , ....etc 
+
+```
+Launching lib\main.dart on Chrome in debug mode...
+Waiting for connection from debug service on Chrome...
+This app is linked to the debug service: ws://127.0.0.1:52337/A9447k_fA6w=/ws
+Debug service listening on ws://127.0.0.1:52337/A9447k_fA6w=/ws
+
+ Running with sound null safety 
+Debug service listening on ws://127.0.0.1:52337/A9447k_fA6w=/ws
+Flutter Web Bootstrap: Programmatic
+wasm streaming compile failed: TypeError: Could not download wasm module
+falling back to ArrayBuffer instantiation
+Flutter Web Bootstrap: Programmatic
+#28
+#29
+#30
+#31
+#32
+...
+```
+for this to prevent screenshots , it will keep Check for screenshots every 1000ms (1 second)
+thats why keeps running in Terminal after running my app , but it will be ressources counsuming so will test this when hosting my app. 
+I will remove it after *Commit SS-Final 1 - Blocking screenshots (web) using html2canvas*
+
+#### More info about it :
+
+html2canvas is a JavaScript library that takes screenshots of web page elements.
+It can be used to detect attempts to take screenshots, but it won't directly prevent screenshots.
+The method mentioned earlier using html2canvas is not a foolproof solution for preventing screenshots on your Flutter web app.
+However, the other methods mentioned, such as disabling text selection and context menus,
+can help deter casual users from taking screenshots.
+
+To test the html2canvas library, follow these steps:
+
+1. In your index.html file in the web folder of your Flutter project,
+add the following line to the <head> section to include the html2canvas library:
+
+```
+<script src="path/to/html2canvas.min.js"></script>
+```
+
+2. Replace path/to/ with the actual path to the html2canvas.min.js file in your project.
+
+Add the following JavaScript code to your index.html file inside the <body> section, just before the closing </body> tag:
+
+```
+<script>
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'PrintScreen') {
+      html2canvas(document.body).then(function (canvas) {
+        // Do something with the screenshot, like displaying a warning or logging the event
+        console.log('Screenshot attempt detected');
+      });
+    }
+  });
+</script>
+```
+
+This code listens for the 'PrintScreen' key event and uses html2canvas to take a screenshot of the document body
+when the key is pressed. In this example, it logs a message to the console, but you can replace the console.
+log line with your own logic, such as displaying a warning message.
+
+
+Keep in mind that this method is not foolproof and won't prevent users from taking screenshots
+using other methods like browser extensions or third-party tools. It can only help you detect when
+a user attempts to take a screenshot using the 'PrintScreen' key.
+
+
+    ---
+
+You should execute the npm install html2canvas command in your project terminal or any command-line interface (CMD, PowerShell, or Git Bash) that has Node.js and npm installed. Make sure you navigate to your Flutter project's root folder before executing the command.
+
+To install the html2canvas library using the terminal in your Flutter project, follow these steps:
+
+Open your Flutter project in your preferred IDE (e.g., Android Studio, Visual Studio Code, etc.).
+Open the terminal within your IDE, usually located at the bottom of the IDE window. If you can't find it, you can check the IDE's documentation or use an external terminal like CMD or PowerShell.
+In the terminal, navigate to your Flutter project's root folder (if you're not already there).
+Run the command npm install html2canvas.
+
+
+If you prefer using an external terminal (CMD, PowerShell, or Git Bash), open the terminal, navigate to your project's root folder, and run the command npm install html2canvas.
+
+
+Please note that you need to have Node.js and npm installed on your system to use these commands. If you don't have them installed, you can download and install Node.js (which includes npm) from the official website: https://nodejs.org/
 
 
 

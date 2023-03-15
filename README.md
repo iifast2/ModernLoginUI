@@ -145,11 +145,42 @@ Warning:
 The certificate uses the SHA1withRSA signature algorithm which is considered a security risk. This algorithm will be disabled in a future update.
 ```
 
+<br/>
+
+---
+
+<br/>
+
+### Other Config for this project : 
+
+For `<!--Screenshot blocker 02 - html2canvas -->` using `html2canvas`
+Add the html2canvas library to your project using npm or yarn:
+
+```
+npm install html2canvas
+```
+
+or 
+
+```
+yarn add html2canvas
+```
+
+
+
+
+
+
+
+
 
 <br/>
 <br/>
 
 ---
+
+<br/>
+<br/>
 
 
 # Run your App  
@@ -183,3 +214,7 @@ http://zapp.run/
 ### Download APK 
 
 [APK v1](https://github.com/iifast2/ModernLoginUI/raw/3-Google-Sign-in-(web)/APK-testing-android/ModernLoginUI-Branch3-version1.apk)
+
+
+
+

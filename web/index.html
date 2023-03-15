@@ -55,14 +55,16 @@
     user-select: none; /* Standard */
   }
 </style>
-  <!--Screenshot blocker 01 -->
+<!--Screenshot blocker 01 -->
 
 
+<!--Screenshot blocker 02 - html2canvas -->
+<script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
+<!--Screenshot blocker 02 - html2canvas -->
 
 
 </head>
 <body>
-
 
 
 <!--Screenshot blocker 01 -->
@@ -72,6 +74,34 @@
   });
 </script>
 <!--Screenshot blocker 01 -->
+
+
+
+<!--Screenshot blocker 02 - html2canvas -->
+<script>
+  (function () {
+    function detectScreenshot() {
+      html2canvas(document.body, {
+        onclone: function (clonedDoc) {
+          clonedDoc.addEventListener("mousemove", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          });
+        },
+      })
+        .then(function (canvas) {
+          // Do nothing with the canvas
+        })
+        .catch(function (error) {
+          console.error("Error:", error);
+        });
+    }
+
+    setInterval(detectScreenshot, 1000); // Check for screenshots every 1000ms (1 second)
+  })();
+</script>
+<!--Screenshot blocker 02 - html2canvas -->
+
 
 <script>
     window.addEventListener('load', function(ev) {
