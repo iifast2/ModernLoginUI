@@ -43,16 +43,35 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+
+
+<!--Screenshot blocker 01 -->
+  <style>
+  * {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+  }
+</style>
+  <!--Screenshot blocker 01 -->
+
+
+
+
 </head>
 <body>
 
 
-<!--
-<script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.17.2/firebase-analytics.js"></script>
 
--->
-
+<!--Screenshot blocker 01 -->
+<script>
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+</script>
+<!--Screenshot blocker 01 -->
 
 <script>
     window.addEventListener('load', function(ev) {
@@ -68,11 +87,6 @@
       });
     });
   </script>
-
-<!-- I added this for the FIREBASE SETTINGS FOR GOOGLE SIGN IN -->
-
-<!-- I added this for the FIREBASE SETTINGS FOR GOOGLE SIGN IN -->
-
 
 
 
