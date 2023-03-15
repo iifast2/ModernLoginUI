@@ -153,6 +153,8 @@ The certificate uses the SHA1withRSA signature algorithm which is considered a s
 
 ### Other Config for this project : 
 
+Issue : Consume Ressources 
+
 For `<!--Screenshot blocker 02 - html2canvas -->` using `html2canvas`
 Add the html2canvas library to your project using npm or yarn:
 
@@ -166,8 +168,10 @@ or
 yarn add html2canvas
 ```
 
+then add 2 tags to your `web\index.html` :
 
-
+Check : Commit SS-Final 1 - Blocking screenshots (web) using html2canvas :
+https://github.com/iifast2/ModernLoginUI/commit/99b2092427eb2f64d50b693a8b52fd3e559d9427  
 
 
 

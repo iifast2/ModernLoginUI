@@ -56,11 +56,8 @@
   }
 </style>
 <!--Screenshot blocker 01 -->
+<!--Screenshot blocker 02 - html2canvas --><!-- Check : Commit SS-Final 1 - Blocking screenshots (web) using html2canvas : https://github.com/iifast2/ModernLoginUI/commit/99b2092427eb2f64d50b693a8b52fd3e559d9427 --><!--Screenshot blocker 02 - html2canvas -->
 
-
-<!--Screenshot blocker 02 - html2canvas -->
-<script src="node_modules/html2canvas/dist/html2canvas.min.js"></script>
-<!--Screenshot blocker 02 - html2canvas -->
 
 
 </head>
@@ -77,30 +74,7 @@
 
 
 
-<!--Screenshot blocker 02 - html2canvas -->
-<script>
-  (function () {
-    function detectScreenshot() {
-      html2canvas(document.body, {
-        onclone: function (clonedDoc) {
-          clonedDoc.addEventListener("mousemove", function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-          });
-        },
-      })
-        .then(function (canvas) {
-          // Do nothing with the canvas
-        })
-        .catch(function (error) {
-          console.error("Error:", error);
-        });
-    }
-
-    setInterval(detectScreenshot, 1000); // Check for screenshots every 1000ms (1 second)
-  })();
-</script>
-<!--Screenshot blocker 02 - html2canvas -->
+<!--Screenshot blocker 02 - html2canvas --><!-- Check : Commit SS-Final 1 - Blocking screenshots (web) using html2canvas : https://github.com/iifast2/ModernLoginUI/commit/99b2092427eb2f64d50b693a8b52fd3e559d9427 --><!--Screenshot blocker 02 - html2canvas -->
 
 
 <script>

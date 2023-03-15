@@ -72,6 +72,11 @@ Checking Android licenses is taking an unexpectedly long time...[√] Android to
 <br/>
 
 ## After I tested ( Screenshot blocker 02 - html2canvas ) : 
+For this , check : 
+
+Commit SS-Final 1 - Blocking screenshots (web) using html2canvas
+
+https://github.com/iifast2/ModernLoginUI/commit/99b2092427eb2f64d50b693a8b52fd3e559d9427
 
 ### Ressources : 
 
@@ -171,7 +176,9 @@ If you prefer using an external terminal (CMD, PowerShell, or Git Bash), open th
 
 Please note that you need to have Node.js and npm installed on your system to use these commands. If you don't have them installed, you can download and install Node.js (which includes npm) from the official website: https://nodejs.org/
 
+     ---
 
+https://github.com/flutter/flutter/issues/36626
 
 
 
