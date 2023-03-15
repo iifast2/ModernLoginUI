@@ -61,7 +61,45 @@ class _LoginPageState extends State<LoginPage> {
 
 //////////////////////////// Sign in Anonymously - End /////////////////////////////
 
-//////////////////////////// Wrong Email & Password Messages For sign user in method - Start /////////////////////////////
+//////////////////////////// Sign in Exceptions & Validators - Start /////////////////////////////
+
+  bool isValidEmail(String email) {
+    final RegExp emailRegex = RegExp(
+      r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$",
+    );
+    return emailRegex.hasMatch(email);
+  }
+
+  bool isValidPassword(String password) {
+    // Replace the pattern with your desired password validation rules
+    final RegExp passwordRegex = RegExp(
+      r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$",
+    );
+    return passwordRegex.hasMatch(password);
+  }
+
+  /* Network-related exceptions: When there's no internet connection or network
+  issues, you might want to inform the user to check their connection.  */
+
+  void networkIssueMessage() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Network issue, please check your internet connection'),
+      ),
+    );
+  }
+
+
+  /* General exceptions: For other unknown or unexpected exceptions, you can show a generic error message.  */
+
+  void generalErrorMessage() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('An error occurred, please try again later'),
+      ),
+    );
+  }
+
 
   void wrongEmailMessage() {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -79,13 +117,21 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-//////////////////////////// Wrong Email & Password Messages For sign user in method - End /////////////////////////////
+//////////////////////////// Sign in Exceptions & Validators - - End /////////////////////////////
 
 //////////////////////////// sign user in method - Start /////////////////////////////
 
   void signUserIn() async {
-    // show a loading circle while the user logs in ~ because that will take a lil bit of time
-    // https://stackoverflow.com/a/63993275/10216101
+    if (!isValidEmail(emailController.text)) {
+      wrongEmailMessage();
+      return;
+    }
+
+    if (!isValidPassword(passwordController.text)) {
+      wrongPasswordMessage();
+      return;
+    }
+
     showDialog(
       context: context,
       builder: (context) {
@@ -96,53 +142,29 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     try {
-      // Sign in
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text,
         password: passwordController.text,
       );
     } on FirebaseAuthException catch (e) {
-      // show error to user
       if (e.code == 'user-not-found') {
         wrongEmailMessage();
       } else if (e.code == 'wrong-password') {
         wrongPasswordMessage();
+      } else {
+        generalErrorMessage();
       }
-      // hide the loading circle
       Navigator.pop(context);
-      // return from the method to avoid calling Navigator.pop(context) twice
+      return;
+    } catch (e) {
+      // Handle network-related or other general exceptions
+      networkIssueMessage();
+      Navigator.pop(context);
       return;
     }
-    // hide the loading circle
     Navigator.pop(context);
   }
 
-////////////////////////////
-/*
-  void signUserIn() async {
-    // show a loading circle while the user logs in ~ because that will take a lil bit of time
-    // https://stackoverflow.com/a/63993275/10216101
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      },
-    );
-}
-
- on FirebaseAuthException; catch (e) {
-  // show error to user
-  if (e.code == 'user-not-found') {
-  wrongEmailMessage();
-  } else if (e.code == 'wrong-password') {
-  wrongPasswordMessage();
-  }
-  }*/
-////////////////////////////
-
-//////////////////////////// sign user in method - End /////////////////////////////
 
 //////////////////////////// Sign in with Google - Start /////////////////////////////
 
@@ -342,19 +364,6 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
 
-                        const SizedBox(height: 30),
-
-/*
-                          anonymous-sign-in button
-                        MyButton(
-                          text: "Anonymous Sign-in",
-                          onTap: () async {
-                            final userCredential = await FirebaseAuth.instance.signInAnonymously();
-
-                          },
-                        ),
-
-*/
 
                         const SizedBox(height: 30),
 
