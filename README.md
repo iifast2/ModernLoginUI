@@ -174,7 +174,11 @@ Check : Commit SS-Final 1 - Blocking screenshots (web) using html2canvas :
 https://github.com/iifast2/ModernLoginUI/commit/99b2092427eb2f64d50b693a8b52fd3e559d9427  
 
 
+## For `flutter_windowmanager: ^0.2.0`
 
+In ios i'll try soon:
+
+https://mrgulshanyadav.medium.com/prevent-screenshot-and-video-recording-in-flutter-93839325d66c
 
 
 

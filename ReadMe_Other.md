@@ -115,6 +115,8 @@ for this to prevent screenshots , it will keep Check for screenshots every 1000m
 thats why keeps running in Terminal after running my app , but it will be ressources counsuming so will test this when hosting my app. 
 I will remove it after *Commit SS-Final 1 - Blocking screenshots (web) using html2canvas*
 
+https://i.imgur.com/CGxbVNr.png
+ 
 #### More info about it :
 
 html2canvas is a JavaScript library that takes screenshots of web page elements.
@@ -159,7 +161,7 @@ using other methods like browser extensions or third-party tools. It can only he
 a user attempts to take a screenshot using the 'PrintScreen' key.
 
 
-    ---
+---
 
 You should execute the npm install html2canvas command in your project terminal or any command-line interface (CMD, PowerShell, or Git Bash) that has Node.js and npm installed. Make sure you navigate to your Flutter project's root folder before executing the command.
 
@@ -176,7 +178,7 @@ If you prefer using an external terminal (CMD, PowerShell, or Git Bash), open th
 
 Please note that you need to have Node.js and npm installed on your system to use these commands. If you don't have them installed, you can download and install Node.js (which includes npm) from the official website: https://nodejs.org/
 
-     ---
+---
 
 https://github.com/flutter/flutter/issues/36626
 
