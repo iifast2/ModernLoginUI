@@ -53,6 +53,10 @@
 
   <img src="https://i.imgur.com/wypI1Zi.png" width="300">
 
+  <img src="https://i.imgur.com/rmddSP5.png" width="300">
+
+  <img src="https://i.imgur.com/kuTatfl.png" width="300">
+
 </p>
 
 <br/><br/>
