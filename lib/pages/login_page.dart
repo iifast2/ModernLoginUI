@@ -7,6 +7,7 @@ import 'package:lottie/lottie.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:modernlogintute/services/auth_service.dart';
 import 'package:modernlogintute/pages/forgot_pwd_page.dart';
+import 'package:flutter/services.dart';
 import 'package:modernlogintute/pages/anonymous_home_page.dart';
 import 'package:modernlogintute/pages/home_page.dart';
 
@@ -29,6 +30,11 @@ class _LoginPageState extends State<LoginPage> {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+// Press Enter to Login :
+  final FocusNode _focusNode = FocusNode();
+
+
 
 //////////////////////////// Sign in Anonymously - Start /////////////////////////////
 
@@ -291,10 +297,19 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 25),
                         // sign in button
 
-                        MyButton(
-                          text: "Sign in",
-                          onTap: signUserIn,
+                        RawKeyboardListener(
+                          focusNode: _focusNode,
+                          onKey: (RawKeyEvent event) {
+                            if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+                              signUserIn();
+                            }
+                          },
+                          child: MyButton(
+                            text: "Sign in",
+                            onTap: signUserIn,
+                          ),
                         ),
+
 
                         const SizedBox(height: 50),
                         // or continue with
