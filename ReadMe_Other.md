@@ -239,6 +239,56 @@ These methods are only enabled on Android platforms.
 ---
 
 <br/>
+<br/>
+<br/>
+<br/>
+
+
+## solving Google Sign in issue 
+
+
+```
+[GSI_LOGGER-OAUTH2_CLIENT]: Checking popup closed.
+[GSI_LOGGER-TOKEN_CLIENT]: Handling response. {"access_token":"ya29.a0AVvZVsrcCHvPH7kSO3zhMCX9SjGMrHlmDUM2MzzN_DiTQlbDVzohccblwxEnzVg6tOaj-Z52k2Vrx3NnxOZlWCGoyGd7Cp_cXti80K91KUY707DX4zsXtAg0JAsa9PzmhFLcN8ZZyKCzEwRELjKLvbsucImrsgaCgYKAfYSARASFQGbdwaIyj1nEMFtUdCPHIp0WZY5fg0165","token_type":"Bearer","expires_in":3599,"scope":"email profile https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email openid","authuser":"0","prompt":"none"}
+[GSI_LOGGER-OAUTH2_CLIENT]: Popup timer stopped.
+[GSI_LOGGER-TOKEN_CLIENT]: Trying to set gapi client token.
+[GSI_LOGGER-TOKEN_CLIENT]: The OAuth token was not passed to gapi.client, since the gapi.client library is not loaded in your page.
+Error signing in with Google: {
+  "error": {
+    "code": 403,
+    "message": "People API has not been used in project 846946449640 before or it is disabled. Enable it by visiting https://console.developers.google.com/apis/api/people.googleapis.com/overview?project=846946449640 then retry. If you enabled this API recently, wait a few minutes for the action to propagate to our systems and retry.",
+    "status": "PERMISSION_DENIED",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.Help",
+        "links": [
+          {
+            "description": "Google developers console API activation",
+            "url": "https://console.developers.google.com/apis/api/people.googleapis.com/overview?project=846946449640"
+          }
+        ]
+      },
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "SERVICE_DISABLED",
+        "domain": "googleapis.com",
+        "metadata": {
+          "consumer": "projects/846946449640",
+          "service": "people.googleapis.com"
+        }
+      }
+    ]
+  }
+}
+
+```
+
+
+
+
+---
+
+<br/>
 
 ---
 

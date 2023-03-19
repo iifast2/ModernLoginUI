@@ -25,5 +25,31 @@ class AuthService{
 
   }
 
-
 }
+
+
+/*
+
+This was in the login_page.dart I remove it because I'm using auth_service.dart for Google Sign-in :
+
+  Future<UserCredential?> _signInWithGoogle() async {
+    // Trigger the Google sign-in flow
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+    // Obtain the auth details from the Google sign-in
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser!.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+//////////////////////////// Sign in with Google - End /////////////////////////////
+
+
+* */

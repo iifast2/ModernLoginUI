@@ -171,24 +171,7 @@ class _LoginPageState extends State<LoginPage> {
 
 //////////////////////////// Sign in with Google - Start /////////////////////////////
 
-  Future<UserCredential?> _signInWithGoogle() async {
-    // Trigger the Google sign-in flow
-    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
-    // Obtain the auth details from the Google sign-in
-    final GoogleSignInAuthentication googleAuth =
-        await googleUser!.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth.accessToken,
-      idToken: googleAuth.idToken,
-    );
-
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
-
-//////////////////////////// Sign in with Google - End /////////////////////////////
 
 //////////////////////////// Login Page UI - Start /////////////////////////////
 
@@ -247,10 +230,14 @@ class _LoginPageState extends State<LoginPage> {
 
                         const SizedBox(height: 25),
 
-                        // email textfield
-
+                       // Email TextField
                         MyTextField(
-                          validator: null,
+                          validator: (value) {
+                            if (!isValidEmail(value!)) {
+                              return 'Please enter a valid email';
+                            }
+                            return null;
+                          },
                           controller: emailController,
                           hintText: 'Email: admin@gmail.com',
                           obscureText: false,
@@ -259,8 +246,14 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 10),
                         // password textfield
 
+
                         MyTextField(
-                           // if you don't have a validator then just leave it empty , you don't even have to put -> validator: null,
+                          validator: (value) {
+                            if (!isValidPassword(value!)) {
+                              return 'Please enter a valid password';
+                            }
+                            return null;
+                          },
                           controller: passwordController,
                           hintText: 'Password: admin123',
                           obscureText: true,
@@ -344,7 +337,15 @@ class _LoginPageState extends State<LoginPage> {
 
                             SquareTile(
                               imagePath: 'lib/images/google.png',
-                              onTap: () => AuthService().signInWithGoogle(),
+                              onTap: () async {
+                                try {
+                                  await AuthService().signInWithGoogle();
+                                  // Navigate to the next page, or show a success message as needed
+                                } catch (eg) {
+                                  // Handle any errors or exceptions
+                                  print('Error signing in with Google: $eg');
+                                }
+                              },
                             ),
 
                             const SizedBox(width: 15),
@@ -382,7 +383,6 @@ class _LoginPageState extends State<LoginPage> {
                             )
                           ],
                         ),
-
 
                         const SizedBox(height: 30),
 
