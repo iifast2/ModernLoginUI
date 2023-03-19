@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
-        
+
         const Text("Logout" ,
            textAlign: TextAlign.center,
            style: TextStyle(
@@ -52,15 +52,13 @@ class _HomePageState extends State<HomePage> {
               color: Colors.deepPurple,
             ),
 
-
+            
             Text(
               "Logged in As :  ${user.email!}",
               style: const TextStyle(fontSize: 40),
             ),
 
             const SizedBox(height: 24),
-
-
 
 
             ElevatedButton(
