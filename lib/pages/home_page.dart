@@ -46,13 +46,13 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-            const Icon(
+/*            const Icon(
               Icons.home_rounded,
               size: 100,
               color: Colors.deepPurple,
             ),
 
-            
+            */
             Text(
               "Logged in As :  ${user.email!}",
               style: const TextStyle(fontSize: 40),
