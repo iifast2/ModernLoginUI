@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
 import 'package:modernlogintute/components/my_button.dart';
@@ -13,27 +14,41 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _emailController = TextEditingController();
 
   @override
+  void dispose() {
+    _emailController.dispose();
+    super.dispose();
+  }
+
+  Future passwordReset() async {
+    try {
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: _emailController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepPurple[200],
         elevation: 0,
       ),
+
       body: Column(
-        
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
 
-           const Padding(
-             padding: EdgeInsets.symmetric(horizontal: 25.0),
-             child: Text("Reset Your Password",
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 25.0),
+            child: Text("Reset Your Password",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                color: Colors.black,
-                fontSize: 60,
-              )
+                  color: Colors.black,
+                  fontSize: 60,
+                )),
           ),
-           ),
 
           const SizedBox(height: 10),
 
@@ -44,6 +59,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 fontSize: 16,
               )),
 
+
           const SizedBox(height: 50),
 
           MyTextField(
@@ -52,17 +68,17 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             obscureText: false,
           ),
 
+
           const SizedBox(height: 30),
 
 
           MyButton(
             text: "Reset Password",
-            onTap: () {},
+            onTap: passwordReset,
           ),
+
+
         ],
-
-
-
       ),
     );
   }
