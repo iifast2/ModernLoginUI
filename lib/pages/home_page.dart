@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:modernlogintute/pages/login_or_register_page.dart';
 import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/Mobile_screenshot_blocker.dart';
+import 'package:modernlogintute/components/utils.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,32 +18,69 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    Utils.enableScreenshotProtection();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(actions: [
+        
+        const Text("Logout" ,
+           textAlign: TextAlign.center,
+           style: TextStyle(
+             color: Colors.white70,
+             fontSize: 20,
+           )
+       ),
         IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
-      ]),
+      ],
+        backgroundColor: Colors.deepPurple[200],
+        elevation: 0,
+      ),
+
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+
+            const Icon(
+              Icons.home_rounded,
+              size: 100,
+              color: Colors.deepPurple,
+            ),
+
+
             Text(
               "Logged in As :  ${user.email!}",
               style: const TextStyle(fontSize: 40),
             ),
-            MobileScreenshotBlocker(),
+
             const SizedBox(height: 24),
+
+
+
+
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
+
                   MaterialPageRoute(
-                    builder: (context) => const MobileScreenshotBlockerPage(),
+                    builder: (context) => MobileScreenshotBlockerPage(
+                      onSecureModeChanged: () {
+                        // Secure mode has been changed
+                      },
+                    ),
                   ),
                 );
               },
 
+
               child: const Text('Go to Mobile Screenshot Blocker Page'),
+
 
 
             ),
@@ -54,13 +92,17 @@ class _HomePageState extends State<HomePage> {
 }
 
 class MobileScreenshotBlockerPage extends StatelessWidget {
-  const MobileScreenshotBlockerPage({Key? key}) : super(key: key);
+  final VoidCallback onSecureModeChanged;
+
+  MobileScreenshotBlockerPage({required this.onSecureModeChanged});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Mobile Screenshot Blocker')),
-      body: Center(child: MobileScreenshotBlocker()),
+      body: Center(
+        child: MobileScreenshotBlocker(onSecureModeChanged: onSecureModeChanged),
+      ),
     );
   }
 }

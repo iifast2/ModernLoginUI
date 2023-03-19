@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
 class MobileScreenshotBlocker extends StatefulWidget {
+  final VoidCallback onSecureModeChanged;
+
+  MobileScreenshotBlocker({required this.onSecureModeChanged});
+
   @override
   _MobileScreenshotBlockerState createState() => _MobileScreenshotBlockerState();
 }
@@ -12,10 +16,24 @@ class _MobileScreenshotBlockerState extends State<MobileScreenshotBlocker> {
 
   @override
   Widget build(BuildContext context) {
-    return buildButton(
-      title: 'Secure Mode: ${isSecureMode ? 'ON' : 'OFF'}',
-      icon: isSecureMode ? Icons.lock : Icons.lock_open,
-      onClicked: toggleSecureMode,
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 30),
+          const Text(
+            'Toggle the button below to enable/disable secure mode (Screenshot Blocker):',
+            style: TextStyle(fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 30),
+          buildButton(
+            title: 'Secure Mode: ${isSecureMode ? 'ON' : 'OFF'}',
+            icon: isSecureMode ? Icons.lock : Icons.lock_open,
+            onClicked: toggleSecureMode,
+          ),
+        ],
+      ),
     );
   }
 
@@ -29,6 +47,8 @@ class _MobileScreenshotBlockerState extends State<MobileScreenshotBlocker> {
     } else {
       await FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
     }
+
+    widget.onSecureModeChanged(); // Notify the parent widget about the change
   }
 
   Widget buildButton({
@@ -52,3 +72,6 @@ class _MobileScreenshotBlockerState extends State<MobileScreenshotBlocker> {
         ),
       );
 }
+
+
+

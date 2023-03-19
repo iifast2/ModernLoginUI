@@ -6,8 +6,11 @@ import 'package:modernlogintute/components/square_tile.dart';
 import 'package:lottie/lottie.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:modernlogintute/services/auth_service.dart';
+import 'package:modernlogintute/pages/forgot_pwd_page.dart';
 import 'package:modernlogintute/pages/anonymous_home_page.dart';
 import 'package:modernlogintute/pages/home_page.dart';
+
+
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -243,6 +246,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
 
                         const SizedBox(height: 25),
+
                         // email textfield
 
                         MyTextField(
@@ -261,16 +265,29 @@ class _LoginPageState extends State<LoginPage> {
                         ),
 
                         const SizedBox(height: 10),
-                        // forgot password?
 
+
+                        // forgot password?
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Text(
-                                'Forgot Password?',
-                                style: TextStyle(color: Colors.grey[600]),
+                              GestureDetector(
+                                onTap: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                return ForgotPasswordPage();
+                                },),);
+                                },
+
+                                child: const Text(
+                                  'Forgot Password?' ,
+
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                              ),
                               ),
                             ],
                           ),

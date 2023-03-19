@@ -183,10 +183,64 @@ Please note that you need to have Node.js and npm installed on your system to us
 https://github.com/flutter/flutter/issues/36626
 
 
+<br/>
+<br/>
+<br/>
+
+---
 
 <br/>
 <br/>
+<br/>
 
+
+
+## Screenshot Protection For android devices ( using `flutter_windowmanager` and `utils.dart` )
+This code provides screenshot protection for Android users in Flutter.
+[ you can test this in APK version 3]
+
+If you want to try this using a toggle button for it, you can check the `Mobile_screenshot_blocker.dart` page.
+
+## Home Page
+
+The `HomePage` class is a `StatefulWidget` that displays the currently logged in user and provides a button to navigate to the `MobileScreenshotBlockerPage`. The `MobileScreenshotBlockerPage` is a `StatelessWidget` that displays the `MobileScreenshotBlocker` widget.
+
+The `_HomePageState` class includes a `signUserOut` method that allows the user to log out of the app and an `initState` method that enables screenshot protection through the `Utils` class.
+
+## Utils
+
+The `Utils` class includes two static methods: `enableScreenshotProtection` and `disableScreenshotProtection`. The `enableScreenshotProtection` method uses the `FlutterWindowManager` package to add the `FlutterWindowManager.FLAG_SECURE` flag to the window, preventing screenshots from being taken. The `disableScreenshotProtection` method clears the `FlutterWindowManager.FLAG_SECURE` flag.
+
+These methods are only enabled on Android platforms.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<br/>
+<br/>
+
+
+
+
+
+---
+
+<br/>
+
+---
 
 
 

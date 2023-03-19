@@ -20,7 +20,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-
   void signUserUp() async {
     if (passwordController.text != confirmPasswordController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -35,7 +34,7 @@ class _RegisterPageState extends State<RegisterPage> {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+              email: emailController.text, password: passwordController.text);
       User? user = userCredential.user;
       await user?.sendEmailVerification(); // This sends the verification email
       print('Verification email sent to ${user?.email}');
@@ -45,10 +44,6 @@ class _RegisterPageState extends State<RegisterPage> {
       print(e);
     }
   }
-
-
-
-
 
   void signUserUpErrorMessages(FirebaseAuthException e, BuildContext context) {
     String errorMessage = '';
@@ -77,9 +72,6 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,23 +96,16 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     // the rest of the content
 
-
-
-
                     Column(
                       children: [
-
                         const SizedBox(height: 50),
-
 
                         const Icon(
                           Icons.account_box_rounded,
                           size: 100,
                         ),
 
-
                         const SizedBox(height: 50),
-
 
                         // welcome back, you've been missed!
                         Text(
@@ -131,9 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
 
-
                         const SizedBox(height: 25),
-
 
                         // email textfield
                         MyTextField(
@@ -176,9 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
 
-
                         const SizedBox(height: 25),
-
 
                         // sign in button
                         MyButton(
@@ -198,12 +179,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               'Already a member?',
                               style: TextStyle(color: Colors.grey[700]),
                             ),
-
-
                             const SizedBox(width: 4),
-
-
-
                             GestureDetector(
                               onTap: widget.onTap,
                               child: const Text(
@@ -211,12 +187,9 @@ class _RegisterPageState extends State<RegisterPage> {
                                 style: TextStyle(
                                   color: Colors.blue,
                                   fontWeight: FontWeight.bold,
-
                                 ),
                               ),
                             ),
-
-
                           ],
                         ),
 

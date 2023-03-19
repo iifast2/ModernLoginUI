@@ -35,7 +35,6 @@ class AnonymousHomePage extends StatelessWidget {
 
                 SizedBox(height: 50),
 
-
                 Text(
                   "Logged in As Anonymous",
                   style: TextStyle(
