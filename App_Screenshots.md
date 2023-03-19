@@ -51,8 +51,11 @@
 <p align="center">
   <img src="https://i.imgur.com/VatNo4I.png" width="300">
 
+  <img src="https://i.imgur.com/wypI1Zi.png" width="300">
+
 </p>
 
+<br/><br/>
 
 ## Android Studio Configuration
 
