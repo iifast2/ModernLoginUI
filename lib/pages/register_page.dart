@@ -120,6 +120,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                         // email textfield
                         MyTextField(
+                          validator: null,
                           controller: emailController,
                           hintText: 'Email',
                           obscureText: false,
@@ -129,6 +130,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                         // password textfield
                         MyTextField(
+                          validator: null,
                           controller: passwordController,
                           hintText: 'Password',
                           obscureText: true,
@@ -138,6 +140,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                         // confirm password textfield
                         MyTextField(
+                          validator: null,
                           controller: confirmPasswordController,
                           hintText: 'Confirm Password',
                           obscureText: true,

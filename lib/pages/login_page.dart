@@ -250,6 +250,7 @@ class _LoginPageState extends State<LoginPage> {
                         // email textfield
 
                         MyTextField(
+                          validator: null,
                           controller: emailController,
                           hintText: 'Email: admin@gmail.com',
                           obscureText: false,
@@ -259,6 +260,7 @@ class _LoginPageState extends State<LoginPage> {
                         // password textfield
 
                         MyTextField(
+                           // if you don't have a validator then just leave it empty , you don't even have to put -> validator: null,
                           controller: passwordController,
                           hintText: 'Password: admin123',
                           obscureText: true,

@@ -12,6 +12,7 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final _emailController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -19,12 +20,25 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     super.dispose();
   }
 
-  Future passwordReset() async {
-    try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailController.text.trim());
-    } on FirebaseAuthException catch (e) {
-      print(e);
+  Future<void> passwordReset() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await FirebaseAuth.instance
+            .sendPasswordResetEmail(email: _emailController.text.trim());
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Password reset link sent to email')),
+        );
+      } on FirebaseAuthException catch (e) {
+        String errorMessage;
+        if (e.code == 'user-not-found') {
+          errorMessage = 'User not found';
+        } else {
+          errorMessage = e.message ?? 'Error';
+        }
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(errorMessage)),
+        );
+      }
     }
   }
 
@@ -35,50 +49,58 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         backgroundColor: Colors.deepPurple[200],
         elevation: 0,
       ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
 
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+                const SizedBox(height: 30),
 
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 25.0),
-            child: Text("Reset Your Password",
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 60,
-                )),
+                const Text(
+                  "Reset Your Password",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 60,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  "Enter your email and we will send you a password reset link!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 50),
+                MyTextField(
+                  controller: _emailController,
+                  hintText: 'Enter your Email: admin@gmail.com',
+                  obscureText: false,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                    if (!RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+                      return 'Please enter a valid email';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 30),
+                MyButton(
+                  text: "Reset Password",
+                  onTap: passwordReset,
+                ),
+              ],
+            ),
           ),
-
-          const SizedBox(height: 10),
-
-          Text("Enter your email and we will send you a password reset link !",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 16,
-              )),
-
-
-          const SizedBox(height: 50),
-
-          MyTextField(
-            controller: _emailController,
-            hintText: 'Enter your Email: admin@gmail.com',
-            obscureText: false,
-          ),
-
-
-          const SizedBox(height: 30),
-
-
-          MyButton(
-            text: "Reset Password",
-            onTap: passwordReset,
-          ),
-
-
-        ],
+        ),
       ),
     );
   }
