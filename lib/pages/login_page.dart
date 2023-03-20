@@ -25,6 +25,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // text editing controllers
 
+
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -34,6 +35,8 @@ class _LoginPageState extends State<LoginPage> {
 // Press Enter to Login :
   final FocusNode _focusNode = FocusNode();
 
+// Sing in Validator Key :
+  final _formKey = GlobalKey<FormState>();
 
 
 //////////////////////////// Sign in Anonymously - Start /////////////////////////////
@@ -69,6 +72,18 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 //////////////////////////// Sign in Anonymously - End /////////////////////////////
+
+
+  void showValidationMessage(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+      ),
+    );
+  }
+
+
+
 
 //////////////////////////// Sign in Exceptions & Validators - Start /////////////////////////////
 
@@ -126,12 +141,19 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+
+
 //////////////////////////// Sign in Exceptions & Validators - - End /////////////////////////////
 
 //////////////////////////// sign user in method - Start /////////////////////////////
 
   void signUserIn() async {
-    if (!isValidEmail(emailController.text)) {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+/*
+if (!isValidEmail(emailController.text)) {
       wrongEmailMessage();
       return;
     }
@@ -140,6 +162,7 @@ class _LoginPageState extends State<LoginPage> {
       wrongPasswordMessage();
       return;
     }
+  */
 
     showDialog(
       context: context,
@@ -237,32 +260,40 @@ class _LoginPageState extends State<LoginPage> {
                         const SizedBox(height: 25),
 
                        // Email TextField
-                        MyTextField(
-                          validator: (value) {
-                            if (!isValidEmail(value!)) {
-                              return 'Please enter a valid email';
-                            }
-                            return null;
-                          },
-                          controller: emailController,
-                          hintText: 'Email: admin@gmail.com',
-                          obscureText: false,
-                        ),
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
 
-                        const SizedBox(height: 10),
-                        // password textfield
+                              // Email Field
+                              MyTextField(
+                                validator: (value) {
+                                  if (!isValidEmail(value!)) {
+                                    return 'Please enter a valid email';
+                                  }
+                                  return null;
+                                },
+                                controller: emailController,
+                                hintText: 'Email: admin@gmail.com',
+                                obscureText: false,
+                              ),
 
+                              const SizedBox(height: 10),
 
-                        MyTextField(
-                          validator: (value) {
-                            if (!isValidPassword(value!)) {
-                              return 'Please enter a valid password';
-                            }
-                            return null;
-                          },
-                          controller: passwordController,
-                          hintText: 'Password: admin123',
-                          obscureText: true,
+                              // Password Field
+                              MyTextField(
+                                validator: (value) {
+                                  if (!isValidPassword(value!)) {
+                                    return 'Please enter a valid password';
+                                  }
+                                  return null;
+                                },
+                                controller: passwordController,
+                                hintText: 'Password: admin123',
+                                obscureText: true,
+                              ),
+                            ],
+                          ),
                         ),
 
                         const SizedBox(height: 10),
