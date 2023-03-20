@@ -15,6 +15,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   firebase_core: ^2.5.0
   firebase_auth: ^4.2.6
+  cloud_firestore: ^4.4.4
+  lottie: ^2.2.0
+  google_sign_in: ^6.0.1
+  google_sign_in_web: ^0.11.0+1
+  flutter_windowmanager: ^0.2.0
+
 
 dev_dependencies:
   flutter_test:

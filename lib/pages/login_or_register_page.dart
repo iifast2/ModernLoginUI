@@ -1,3 +1,4 @@
+// lib/pages/login_or_register_page.dart
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/register_page.dart';
@@ -16,32 +17,32 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
 
 
 // toggle between the login and register page
-   void togglePages(){
+  void togglePages(){
 
-     setState(() {
+    setState(() {
 
-       showLoginPage = !showLoginPage;
+      showLoginPage = !showLoginPage;
 
-     });
-   }
+    });
+  }
 
 
 
   @override
   Widget build(BuildContext context) {
-      if(showLoginPage){
-     return LoginPage(
-       onTap: togglePages,
-     );
-  }else{
+    if(showLoginPage){
+      return LoginPage(
+        onTap: togglePages,
+      );
+    }else{
       return RegisterPage(
         onTap: togglePages,
 
       );
-      }
+    }
   }
-}
 
+}
 
 
 

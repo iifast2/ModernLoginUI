@@ -24,12 +24,17 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="modernlogintute">
+  <meta name="google-signin-client_id" content="846946449640-8ujoe1imn7baii4bh5adgffhb724ggkq.apps.googleusercontent.com">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+
+  <!--  <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>modernlogintute</title>
+  <title>ModernLoginUI</title>
   <link rel="manifest" href="manifest.json">
 
   <script>
@@ -38,9 +43,41 @@
   </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
+
+
+
+<!--Screenshot blocker 01 -->
+  <style>
+  * {
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+  }
+</style>
+<!--Screenshot blocker 01 -->
+<!--Screenshot blocker 02 - html2canvas --><!-- Check : Commit SS-Final 1 - Blocking screenshots (web) using html2canvas : https://github.com/iifast2/ModernLoginUI/commit/99b2092427eb2f64d50b693a8b52fd3e559d9427 --><!--Screenshot blocker 02 - html2canvas -->
+
+
+
 </head>
 <body>
-  <script>
+
+
+<!--Screenshot blocker 01 -->
+<script>
+  document.addEventListener('contextmenu', function (e) {
+    e.preventDefault();
+  });
+</script>
+<!--Screenshot blocker 01 -->
+
+
+
+<!--Screenshot blocker 02 - html2canvas --><!-- Check : Commit SS-Final 1 - Blocking screenshots (web) using html2canvas : https://github.com/iifast2/ModernLoginUI/commit/99b2092427eb2f64d50b693a8b52fd3e559d9427 --><!--Screenshot blocker 02 - html2canvas -->
+
+
+<script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
@@ -54,5 +91,9 @@
       });
     });
   </script>
+
+
+
+
 </body>
 </html>
