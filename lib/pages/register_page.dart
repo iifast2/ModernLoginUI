@@ -20,15 +20,14 @@ class _RegisterPageState extends State<RegisterPage> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-
-  final _formKey = GlobalKey<FormState>();
-
-
-// I used dispose() with these !
-
   final _firstNameController = TextEditingController();
   final _lastNameController = TextEditingController();
   final _ageController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+
+// I used dispose() with these !!!
+
 
   @override
   void dispose(){
@@ -75,18 +74,6 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
 
-/*
- // this is the basic password Validator :
-  String? passwordValidator(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'Please enter a password';
-    }
-    if (value.length < 6) {
-      return 'Password must be at least 6 characters long';
-    }
-    return null;
-  }
-*/
 
 
   void signUserUp() async {

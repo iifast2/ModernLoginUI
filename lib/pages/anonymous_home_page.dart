@@ -13,14 +13,31 @@ class AnonymousHomePage extends StatelessWidget {
           return const CircularProgressIndicator();
         }
 
-//        final user = snapshot.data;
+// I changed the App bar Now : Label + Icon (logout)
+        void signUserOut() {
+          FirebaseAuth.instance.signOut();
+        }
 
         return Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.deepPurple[200],
+            elevation: 0,
             actions: [
-              IconButton(onPressed: _signUserOut, icon: const Icon(Icons.logout))
+              TextButton.icon(
+                onPressed: signUserOut,
+                icon: const Icon(Icons.logout, color: Colors.white),
+                label: const Text(
+                  "Logout",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
             ],
           ),
+
+
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

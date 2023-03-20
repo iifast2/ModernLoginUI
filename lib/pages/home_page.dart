@@ -95,6 +95,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+
+// [For Android ] This will keep the screenshotBlocker on the home page always "on" !!
 class MobileScreenshotBlockerPage extends StatelessWidget {
   final VoidCallback onSecureModeChanged;
 
@@ -103,7 +105,10 @@ class MobileScreenshotBlockerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Mobile Screenshot Blocker')),
+      appBar:
+        AppBar(title: const Text('Mobile Screenshot Blocker'),
+        backgroundColor: Colors.deepPurple[200],
+      ),
       body: Center(
         child: MobileScreenshotBlocker(onSecureModeChanged: onSecureModeChanged),
       ),

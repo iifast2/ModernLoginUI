@@ -102,10 +102,16 @@ class _AuthPageState extends State<AuthPage> {
           if (snapshot.hasData) {
             final User? user = snapshot.data;
             if (user != null) {
+              // If the user is anonymous, navigate to AnonymousHomePage
+              if (user.isAnonymous) {
+                return AnonymousHomePage();
+              }
               // Check if email is verified
               if (user.emailVerified) {
                 return HomePage();
               } else {
+
+
                 // If email is not verified, show a message to the user
                 return Scaffold(
                   appBar: AppBar(title: const Text("Email Verification")),
@@ -165,6 +171,8 @@ class _AuthPageState extends State<AuthPage> {
               // If the user is anonymous
               return AnonymousHomePage();
             }
+
+          
           } else {
             return const LoginOrRegisterPage();
           }
