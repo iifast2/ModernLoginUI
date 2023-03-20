@@ -67,6 +67,20 @@ https://console.cloud.google.com/apis/api/people.googleapis.com/overview?project
 
 <br/><br/>
 
+## Validators 
+
+Adding validators for Login, Register and Forgot Password Pages
+
+<p align="center">
+  <img src="https://i.imgur.com/URijJgI.png" width="300">
+
+</p>
+
+
+
+
+<br/><br/>
+
 ## Android Studio Configuration
 
 <p align="center">

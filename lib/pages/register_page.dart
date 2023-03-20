@@ -20,12 +20,68 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
+  final _formKey = GlobalKey<FormState>();
+
+
+
+  String? emailValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter an email';
+    }
+    if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(value)) {
+      return 'Please enter a valid email address';
+    }
+    return null;
+  }
+
+  String? passwordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a password';
+    }
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters long';
+    }
+    if (!RegExp(r'(?=.*[A-Z])').hasMatch(value)) {
+      return 'Password must contain at least one uppercase letter';
+    }
+    if (!RegExp(r'(?=.*[a-z])').hasMatch(value)) {
+      return 'Password must contain at least one lowercase letter';
+    }
+    if (!RegExp(r'(?=.*\d)').hasMatch(value)) {
+      return 'Password must contain at least one digit';
+    }
+    if (!RegExp(r'(?=.*[\W_])').hasMatch(value)) {
+      return 'Password must contain at least one special character (e.g., !@#\$%\^&\*)';
+    }
+    return null;
+  }
+
+
+/*
+ // this is the basic password Validator :
+  String? passwordValidator(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter a password';
+    }
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters long';
+    }
+    return null;
+  }
+*/
+
+
   void signUserUp() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
     if (passwordController.text != confirmPasswordController.text) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Passwords do not match.'),
           duration: const Duration(seconds: 3),
+          backgroundColor: Colors.redAccent,
         ),
       );
       return;
@@ -68,6 +124,7 @@ class _RegisterPageState extends State<RegisterPage> {
       SnackBar(
         content: Text(errorMessage),
         duration: const Duration(seconds: 3),
+        backgroundColor: Colors.redAccent,
       ),
     );
   }
@@ -98,105 +155,107 @@ class _RegisterPageState extends State<RegisterPage> {
 
                     Column(
                       children: [
-                        const SizedBox(height: 50),
 
-                        const Icon(
-                          Icons.account_box_rounded,
-                          size: 100,
-                        ),
+                            const SizedBox(height: 50),
 
-                        const SizedBox(height: 50),
+                            const Icon(
+                              Icons.account_box_rounded,
+                              size: 100,
+                            ),
 
-                        // welcome back, you've been missed!
-                        Text(
-                          'Let\'s create an account for you!',
-                          style: TextStyle(
-                            color: Colors.grey[700],
-                            fontSize: 16,
-                          ),
-                        ),
+                            const SizedBox(height: 50),
 
-                        const SizedBox(height: 25),
-
-                        // email textfield
-                        MyTextField(
-                          validator: null,
-                          controller: emailController,
-                          hintText: 'Email',
-                          obscureText: false,
-                        ),
-
-                        const SizedBox(height: 10),
-
-                        // password textfield
-                        MyTextField(
-                          validator: null,
-                          controller: passwordController,
-                          hintText: 'Password',
-                          obscureText: true,
-                        ),
-
-                        const SizedBox(height: 10),
-
-                        // confirm password textfield
-                        MyTextField(
-                          validator: null,
-                          controller: confirmPasswordController,
-                          hintText: 'Confirm Password',
-                          obscureText: true,
-                        ),
-
-                        const SizedBox(height: 10),
-
-                        // forgot password?
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Text(
-                                'Forgot Password?',
-                                style: TextStyle(color: Colors.grey[600]),
+                            // welcome back, you've been missed!
+                            Text(
+                              'Let\'s create an account for you!',
+                              style: TextStyle(
+                                color: Colors.grey[700],
+                                fontSize: 16,
                               ),
+                            ),
+
+                            const SizedBox(height: 25),
+
+                        Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+
+                            // email textfield
+                              MyTextField(
+                                validator: emailValidator,
+                                controller: emailController,
+                                hintText: 'Email',
+                                obscureText: false,
+                              ),
+
+                              const SizedBox(height: 10),
+
+                            // password textfield
+                              MyTextField(
+                                validator: passwordValidator,
+                                controller: passwordController,
+                                hintText: 'Password',
+                                obscureText: true,
+                              ),
+
+                              const SizedBox(height: 10),
+
+                            // confirm password textfield
+                              MyTextField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please confirm your password';
+                                  }
+                                  if (value != passwordController.text) {
+                                    return 'Passwords do not match';
+                                  }
+                                  return null;
+                                },
+                                controller: confirmPasswordController,
+                                hintText: 'Confirm Password',
+                                obscureText: true,
+                              ),
+
+
+                              const SizedBox(height: 25),
+
+                              // sign in button
+                              MyButton(
+                                text: "Sign up",
+                                onTap: signUserUp,
+                              ),
+
+                              const SizedBox(height: 50),
+
+                              const SizedBox(height: 30),
+
+                              // Already a member? Sign in now / Login Now !
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Already a member?',
+                                    style: TextStyle(color: Colors.grey[700]),
+                                  ),
+                                  const SizedBox(width: 4),
+                                  GestureDetector(
+                                    onTap: widget.onTap,
+                                    child: const Text(
+                                      'Login now',
+                                      style: TextStyle(
+                                        color: Colors.blue,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                              const SizedBox(height: 30),
                             ],
                           ),
                         ),
-
-                        const SizedBox(height: 25),
-
-                        // sign in button
-                        MyButton(
-                          text: "Sign up",
-                          onTap: signUserUp,
-                        ),
-
-                        const SizedBox(height: 50),
-
-                        const SizedBox(height: 30),
-
-                        // Already a member? Sign in now / Login Now !
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Already a member?',
-                              style: TextStyle(color: Colors.grey[700]),
-                            ),
-                            const SizedBox(width: 4),
-                            GestureDetector(
-                              onTap: widget.onTap,
-                              child: const Text(
-                                'Login now',
-                                style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        const SizedBox(height: 30),
                       ],
                     ),
                   ],
