@@ -26,20 +26,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [
-
-        const Text("Logout" ,
-           textAlign: TextAlign.center,
-           style: TextStyle(
-             color: Colors.white70,
-             fontSize: 20,
-           )
-       ),
-        IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
-      ],
+      appBar: AppBar(
         backgroundColor: Colors.deepPurple[200],
         elevation: 0,
+        actions: [
+          TextButton.icon(
+            onPressed: signUserOut,
+            icon: const Icon(Icons.logout, color: Colors.white),
+            label: const Text(
+              "Logout",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ],
       ),
+
 
       body: Center(
         child: Column(
@@ -53,8 +57,10 @@ class _HomePageState extends State<HomePage> {
             ),
 
             */
+
+
             Text(
-              "Logged in As :  ${user.email!}",
+              "Logged in As: ${user.email ?? 'Unknown'}",
               style: const TextStyle(fontSize: 40),
             ),
 
