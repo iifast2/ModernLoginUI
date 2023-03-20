@@ -98,13 +98,7 @@ class _LoginPageState extends State<LoginPage> {
     return emailRegex.hasMatch(email);
   }
 
-  bool isValidPassword(String password) {
-    // Replace the pattern with your desired password validation rules
-    final RegExp passwordRegex = RegExp(
-      r"^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$",
-    );
-    return passwordRegex.hasMatch(password);
-  }
+
 
   /* Network-related exceptions: When there's no internet connection or network
   issues, you might want to inform the user to check their connection.  */
@@ -296,12 +290,6 @@ if (!isValidEmail(emailController.text)) {
 
                               // Password Field
                               MyTextField(
-                                validator: (value) {
-                                  if (!isValidPassword(value!)) {
-                                    return 'Please enter a valid password';
-                                  }
-                                  return null;
-                                },
                                 controller: _passwordController,
                                 hintText: 'Password: admin123',
                                 obscureText: true,

@@ -257,7 +257,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
                               // last name textfield
                               MyTextField(
-                                controller:  _lastNameController ,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter your last name';
+                                  }
+                                  return null;
+                                },
+                                controller: _lastNameController,
                                 hintText: 'Last Name',
                                 obscureText: false,
                               ),
@@ -267,9 +273,23 @@ class _RegisterPageState extends State<RegisterPage> {
 
                               // age textfield
                               MyTextField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter your age';
+                                  }
+                                  if (int.tryParse(value) == null) {
+                                    return 'Please enter a valid age';
+                                  }
+                                  int age = int.parse(value);
+                                  if (age < 0 || age > 150) {
+                                    return 'Please enter a valid age';
+                                  }
+                                  return null;
+                                },
                                 controller: _ageController,
                                 hintText: 'Age',
                                 obscureText: false,
+                                keyboardType: TextInputType.number,
                               ),
 
 

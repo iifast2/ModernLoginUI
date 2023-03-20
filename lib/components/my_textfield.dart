@@ -4,6 +4,7 @@ class MyTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final TextInputType keyboardType;
   final String? Function(String?)? validator;
 
   const MyTextField({
@@ -12,6 +13,7 @@ class MyTextField extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     this.validator,
+    this.keyboardType = TextInputType.text, // Set the default value here
   }) : super(key: key);
 
   @override
@@ -21,6 +23,7 @@ class MyTextField extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         obscureText: obscureText,
+        keyboardType: keyboardType, // Add this line
         decoration: InputDecoration(
           enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
