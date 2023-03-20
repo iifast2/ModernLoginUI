@@ -26,8 +26,8 @@ class _LoginPageState extends State<LoginPage> {
   // text editing controllers
 
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -87,8 +87,6 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-
 
 
 //////////////////////////// Sign in Exceptions & Validators - Start /////////////////////////////
@@ -159,7 +157,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 
-
 //////////////////////////// Sign in Exceptions & Validators - - End /////////////////////////////
 
 //////////////////////////// sign user in method - Start /////////////////////////////
@@ -192,8 +189,8 @@ if (!isValidEmail(emailController.text)) {
 
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text,
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -290,7 +287,7 @@ if (!isValidEmail(emailController.text)) {
                                   }
                                   return null;
                                 },
-                                controller: emailController,
+                                controller: _emailController,
                                 hintText: 'Email: admin@gmail.com',
                                 obscureText: false,
                               ),
@@ -305,7 +302,7 @@ if (!isValidEmail(emailController.text)) {
                                   }
                                   return null;
                                 },
-                                controller: passwordController,
+                                controller: _passwordController,
                                 hintText: 'Password: admin123',
                                 obscureText: true,
                               ),

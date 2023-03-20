@@ -4,9 +4,59 @@ import 'package:modernlogintute/pages/home_page.dart';
 import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/anonymous_home_page.dart';
 import 'login_or_register_page.dart';
+import 'dart:async';
 
-class AuthPage extends StatelessWidget {
+
+class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
+
+  @override
+  _AuthPageState createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  Timer? _emailVerificationTimer;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _startEmailVerificationTimer();
+  }
+
+
+  void _startEmailVerificationTimer() {
+    _emailVerificationTimer = Timer.periodic(const Duration(seconds: 5), (timer) async {
+      // Check if the current user is not null and not anonymous
+      final User? currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null && !currentUser.isAnonymous) {
+        // Refresh user data
+        await currentUser.reload();
+        // Check if the email is now verified
+        if (currentUser.emailVerified) {
+          // Stop the timer, as the email is verified
+          _stopEmailVerificationTimer();
+          // Update the UI
+          setState(() {});
+        }
+      }
+    });
+  }
+
+  void _stopEmailVerificationTimer() {
+    if (_emailVerificationTimer != null) {
+      _emailVerificationTimer!.cancel();
+      _emailVerificationTimer = null;
+    }
+  }
+
+  @override
+  void dispose() {
+    _stopEmailVerificationTimer();
+    super.dispose();
+  }
+
+
 
 ////// Verify Email Exception (errors) Handeling //////
   void showEmailVerificationErrorSnackBar(Exception e, BuildContext context) {
@@ -83,8 +133,8 @@ class AuthPage extends StatelessWidget {
 
                                 showEmailVerificationErrorSnackBar(e, context);
                               } else {
-                                // If the error is not an exception, you can handle it differently or ignore it
-                              // If the error is not an exception, display a generic error message
+                                /* If the error is not an exception, you can handle it differently or ignore it
+                                If the error is not an exception, display a generic error message */
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                      content: Text('An unknown error occurred. ${e.toString()}'),

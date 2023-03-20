@@ -243,6 +243,89 @@ These methods are only enabled on Android platforms.
 <br/>
 <br/>
 
+## Cloud FireStore Rules (user CRUD )
+
+/*
+in the register_page.dart : 
+
+the _emailController has an underscore prefix,
+making it a private variable within the class.
+In contrast, the passwordController is a public variable.
+
+As for the disposal, you are correct that only _emailController is being disposed
+of in the dispose() method. You should also dispose of the other
+TextEditingController instances to prevent memory leaks.
+To do this, update the dispose() method as follows:
+
+By adding these lines, you ensure that all TextEditingController instances are
+properly disposed of when the widget is removed from the widget tree.
+*/
+
+
+
+
+https://i.imgur.com/UkBEJlw.png
+
+before modifying it :
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
+```
+
+Error : 
+
+Verification email sent to vmail...@gmail.com
+Error: [cloud_firestore/permission-denied] Missing or insufficient permissions.
+
+The error you are getting, "Missing or insufficient permissions," indicates that your app is trying
+to read or write to Firestore without the proper permissions set. To fix this, you need to update your Firestore security rules.
+
+Based on your current Firestore rules, all read and write operations are denied. To allow read and 
+write access only to authenticated users, you can update your rules to the following:
+
+```
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+
+```
+
+These rules allow read and write access only if the request is authenticated.
+
+As for your RegisterPage code, it seems like you are already adding user details to Firestore. 
+However, you may want to consider adding more fields to your Firestore document such as a timestamp4
+to track when the user was registered.
+
+Additionally, you should ensure that the FirebaseAuth and Firestore libraries are imported correctly at the top of your file.
+
+Overall, it's important to make sure that your Firestore rules match the intended behavior of your app,
+and to thoroughly test your app to ensure that everything is working as expected.
+
+
+
+
+
+
+
+---
+
+<br/>
+<br/>
+<br/>
+<br/>
+
 
 ## solving Google Sign in issue 
 

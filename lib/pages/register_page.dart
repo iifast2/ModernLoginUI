@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_button.dart';
@@ -16,12 +17,29 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   // text editing controllers
 
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  final confirmPasswordController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
 
+
+// I used dispose() with these !
+
+  final _firstNameController = TextEditingController();
+  final _lastNameController = TextEditingController();
+  final _ageController = TextEditingController();
+
+  @override
+  void dispose(){
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose(); // Add this line
+    _confirmPasswordController.dispose();
+    _ageController.dispose();
+    super.dispose();
+  }
 
 
   String? emailValidator(String? value) {
@@ -76,7 +94,7 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    if (passwordController.text != confirmPasswordController.text) {
+    if (_passwordController.text.trim() != _confirmPasswordController.text.trim()) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Passwords do not match.'),
@@ -88,9 +106,20 @@ class _RegisterPageState extends State<RegisterPage> {
     }
 
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
-              email: emailController.text, password: passwordController.text);
+      // Create User
+      UserCredential userCredential =
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _emailController.text.trim(),
+          password: _passwordController.text.trim());
+
+      // add user Details
+      addUserDetails(
+        _firstNameController.text.trim(),
+        _lastNameController.text.trim(),
+        _emailController.text.trim(),
+        int.parse(_ageController.text.trim()),
+      );
+
       User? user = userCredential.user;
       await user?.sendEmailVerification(); // This sends the verification email
       print('Verification email sent to ${user?.email}');
@@ -99,7 +128,23 @@ class _RegisterPageState extends State<RegisterPage> {
     } catch (e) {
       print(e);
     }
+  } // Move the closing brace here
+
+
+
+
+  Future addUserDetails(
+      String firstName,String lastName,String email,int age) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'first name': firstName,
+      'last name': lastName,
+      'email': email,
+      'age': age,
+    });
+
   }
+
+
 
   void signUserUpErrorMessages(FirebaseAuthException e, BuildContext context) {
     String errorMessage = '';
@@ -184,17 +229,56 @@ class _RegisterPageState extends State<RegisterPage> {
                             // email textfield
                               MyTextField(
                                 validator: emailValidator,
-                                controller: emailController,
+                                controller: _emailController,
                                 hintText: 'Email',
                                 obscureText: false,
                               ),
+
+
+
+                              const SizedBox(height: 10),
+
+
+                              // first name textfield
+                              MyTextField(
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter your first name';
+                                  }
+                                  return null;
+                                },
+                                controller: _firstNameController,
+                                hintText: 'First Name',
+                                obscureText: false,
+                              ),
+
+
+                              const SizedBox(height: 10),
+
+                              // last name textfield
+                              MyTextField(
+                                controller:  _lastNameController ,
+                                hintText: 'Last Name',
+                                obscureText: false,
+                              ),
+
+
+                              const SizedBox(height: 10),
+
+                              // age textfield
+                              MyTextField(
+                                controller: _ageController,
+                                hintText: 'Age',
+                                obscureText: false,
+                              ),
+
 
                               const SizedBox(height: 10),
 
                             // password textfield
                               MyTextField(
                                 validator: passwordValidator,
-                                controller: passwordController,
+                                controller: _passwordController,
                                 hintText: 'Password',
                                 obscureText: true,
                               ),
@@ -207,12 +291,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                   if (value == null || value.isEmpty) {
                                     return 'Please confirm your password';
                                   }
-                                  if (value != passwordController.text) {
+                                  if (value != _passwordController.text.trim()) {
                                     return 'Passwords do not match';
                                   }
                                   return null;
                                 },
-                                controller: confirmPasswordController,
+                                controller: _confirmPasswordController,
                                 hintText: 'Confirm Password',
                                 obscureText: true,
                               ),
