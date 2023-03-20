@@ -63,6 +63,9 @@ class _LoginPageState extends State<LoginPage> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.message ?? 'An unknown error occurred.'),
+          duration: Duration(seconds: 3),
+          backgroundColor: Colors.redAccent,
+
         ),
       );
     }
@@ -78,6 +81,9 @@ class _LoginPageState extends State<LoginPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.redAccent,
+
       ),
     );
   }
@@ -109,6 +115,9 @@ class _LoginPageState extends State<LoginPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Network issue, please check your internet connection'),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.purpleAccent,
+
       ),
     );
   }
@@ -120,6 +129,8 @@ class _LoginPageState extends State<LoginPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('An error occurred, please try again later'),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.redAccent,
       ),
     );
   }
@@ -129,6 +140,9 @@ class _LoginPageState extends State<LoginPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Incorrect Email'),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.redAccent,
+
       ),
     );
   }
@@ -137,6 +151,9 @@ class _LoginPageState extends State<LoginPage> {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Incorrect Password'),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.redAccent,
+
       ),
     );
   }
