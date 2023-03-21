@@ -84,30 +84,11 @@ class _HomePageState extends State<HomePage> {
               style: const TextStyle(fontSize: 40),
             ),
 
-        const SizedBox(height: 15),
-
-        Expanded(
-
-        child: FutureBuilder(
-        future: getDocId(),
-        builder: (context , snapshot){
-          return ListView.builder(
-              itemCount: 3,
-              itemBuilder: (context, index){
-                return ListTile(
-                  title: Text('name'),
-                );
-              });
-        })
-        ),
-           
+            const SizedBox(height: 15),
 
 
-        const SizedBox(height: 15),
-
-
-        // Button to Go to ScreenBlocker Page
-        ElevatedButton(
+            // Button to Go to ScreenBlocker Page
+            ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -123,6 +104,28 @@ class _HomePageState extends State<HomePage> {
               },
               child: const Text('Go to Mobile Screenshot Blocker Page'),
             ),
+
+
+        const SizedBox(height: 15),
+
+        Expanded(
+
+        child: FutureBuilder(
+        future: getDocId(),
+        builder: (context , snapshot){
+          return ListView.builder(
+              itemCount: docIDs.length,
+              itemBuilder: (context, index){
+                return ListTile(
+                  title: Text(docIDs[index]),
+                );
+              });
+        })
+        ),
+           
+
+
+
 
           ],
         ),

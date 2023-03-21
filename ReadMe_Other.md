@@ -263,8 +263,10 @@ properly disposed of when the widget is removed from the widget tree.
 
 
 
+<p align="center">
+  <img src="https://i.imgur.com/UkBEJlw.png" width="600">
+</p>
 
-https://i.imgur.com/UkBEJlw.png
 
 before modifying it :
 
