@@ -5,6 +5,7 @@ import 'package:modernlogintute/pages/login_or_register_page.dart';
 import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/Mobile_screenshot_blocker.dart';
 import 'package:modernlogintute/components/utils.dart';
+import 'package:modernlogintute/read%20data/get_user_name.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -117,7 +118,7 @@ class _HomePageState extends State<HomePage> {
               itemCount: docIDs.length,
               itemBuilder: (context, index){
                 return ListTile(
-                  title: Text(docIDs[index]),
+                  title: GetUserName(documentId: docIDs[index],),
                 );
               });
         })
