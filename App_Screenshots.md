@@ -100,6 +100,7 @@ Adding validators for Login, Register and Forgot Password Pages
 
 <p align="center">
   <img src="https://i.imgur.com/2lEHGuP.png" width="600">
+  <img src="https://i.imgur.com/BYbN3RS.png" width="600">
 </p>
 
 

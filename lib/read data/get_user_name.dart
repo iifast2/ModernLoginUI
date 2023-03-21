@@ -20,7 +20,9 @@ GetUserName({required this.documentId});
 
 
 
-    return FutureBuilder<DocumentSnapshot>(builder: ((context, snapshot) {
+    return FutureBuilder<DocumentSnapshot>(
+      future: users.doc(documentId).get(),
+      builder: ((context, snapshot) {
 
       // if the connection state is done = fully loaded , we grab the data from the snapshot
       if (snapshot.connectionState == ConnectionState.done){
