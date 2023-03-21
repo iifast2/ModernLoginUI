@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/pages/login_or_register_page.dart';
@@ -13,12 +14,29 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final user = FirebaseAuth.instance.currentUser!;
 
+  // document IDs
+  List<String> docIDs = [];
+
+
+  // go docIDs
+  Future getDocId() async {
+    await FirebaseFirestore.instance.collection('users').get().then(
+            (snapshot) => snapshot.docs.forEach((document) {
+              print(document.reference);
+              docIDs.add(document.reference.id);
+            }));
+
+
+  }
+
+
   void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
 
   @override
   void initState() {
+    getDocId();
     super.initState();
     Utils.enableScreenshotProtection();
   }
@@ -50,24 +68,46 @@ class _HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
+
 /*            const Icon(
               Icons.home_rounded,
               size: 100,
               color: Colors.deepPurple,
             ),
+*/
 
-            */
 
 
             Text(
-              "Logged in As: ${user.email ?? 'Unknown'}",
+              // "Logged in As: ${user.email ?? 'Unknown'}",
+              "Logged in As: ${user.email}",
               style: const TextStyle(fontSize: 40),
             ),
 
-            const SizedBox(height: 24),
+        const SizedBox(height: 15),
+
+        Expanded(
+
+        child: FutureBuilder(
+        future: getDocId(),
+        builder: (context , snapshot){
+          return ListView.builder(
+              itemCount: 3,
+              itemBuilder: (context, index){
+                return ListTile(
+                  title: Text('name'),
+                );
+              });
+        })
+        ),
+           
 
 
-            ElevatedButton(
+        const SizedBox(height: 15),
+
+
+        // Button to Go to ScreenBlocker Page
+        ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -81,13 +121,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                 );
               },
-
-
               child: const Text('Go to Mobile Screenshot Blocker Page'),
-
-
-
             ),
+
           ],
         ),
       ),
@@ -96,7 +132,9 @@ class _HomePageState extends State<HomePage> {
 }
 
 
-// [For Android ] This will keep the screenshotBlocker on the home page always "on" !!
+
+
+// [ For Android ] / subpage - This will keep the screenshotBlocker on the home page always "on" !!
 class MobileScreenshotBlockerPage extends StatelessWidget {
   final VoidCallback onSecureModeChanged;
 
