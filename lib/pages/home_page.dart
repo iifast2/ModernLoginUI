@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    getDocId();
+    //getDocId();
     super.initState();
     Utils.enableScreenshotProtection();
   }
