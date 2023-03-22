@@ -100,8 +100,11 @@ class _LoginPageState extends State<LoginPage> {
 
 
 
-  /* Network-related exceptions: When there's no internet connection or network
-  issues, you might want to inform the user to check their connection.  */
+  /*
+  Network-related exceptions: When there's no internet connection or network
+  issues, you might want to inform the user to check their connection.
+
+  */
 
   void networkIssueMessage() {
     ScaffoldMessenger.of(context).showSnackBar(

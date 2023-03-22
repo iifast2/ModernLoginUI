@@ -119,6 +119,7 @@ class _AuthPageState extends State<AuthPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        const Text("Provide you email and we will send you a link to rest your password."),
                         const Text("Please verify your email before proceeding."),
                         TextButton(
                           onPressed: () async {
@@ -160,7 +161,7 @@ class _AuthPageState extends State<AuthPage> {
                             // Sign out the user
                             await FirebaseAuth.instance.signOut();
                           },
-                          child: const Text("Sign Out"),
+                          child: const Text("Go Back"),
                         ),
                       ],
                     ),
@@ -172,7 +173,7 @@ class _AuthPageState extends State<AuthPage> {
               return AnonymousHomePage();
             }
 
-          
+
           } else {
             return const LoginOrRegisterPage();
           }
