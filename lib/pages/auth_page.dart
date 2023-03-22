@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/pages/home_page.dart';
 import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/anonymous_home_page.dart';
-import 'login_or_register_page.dart';
+import 'package:modernlogintute/pages/login_or_register_page.dart';
 import 'dart:async';
 
 
@@ -23,6 +24,8 @@ class _AuthPageState extends State<AuthPage> {
     super.initState();
     _startEmailVerificationTimer();
   }
+
+
 
 
   void _startEmailVerificationTimer() {

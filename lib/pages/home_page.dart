@@ -127,7 +127,7 @@ class _HomePageState extends State<HomePage> {
 
         const SizedBox(height: 15),
 
-        Expanded(
+/*        Expanded(
 
         child: FutureBuilder(
         future: getDocId(),
@@ -141,6 +141,8 @@ class _HomePageState extends State<HomePage> {
               });
         })
         ),
+
+        */
            
 
 
