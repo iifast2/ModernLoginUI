@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 
 class UserProfilePage extends StatefulWidget {
@@ -11,21 +12,21 @@ class UserProfilePage extends StatefulWidget {
 
 class _UserProfilePageState extends State<UserProfilePage> {
 
+  final User? user = FirebaseAuth.instance.currentUser;
+
+
 
   @override
   Widget build(BuildContext context) {
-    final User? user = FirebaseAuth.instance.currentUser;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(user?.email ?? 'User Email'),
-        backgroundColor: Colors.deepPurple[200],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-           const CircleAvatar(
+            const CircleAvatar(
               backgroundImage: AssetImage(
                   'lib/images/default_profile_image.png'),
               radius: 80,
@@ -33,9 +34,28 @@ class _UserProfilePageState extends State<UserProfilePage> {
             const SizedBox(height: 20),
             Text(
               user?.displayName ?? 'User Name',
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
             ),
-            // Add more widgets to display other user data
+            const SizedBox(height: 20),
+            Text(
+              user?.email ?? 'user Email',
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'First Name: ${user?.firstName ?? 'N/A'}',
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Last Name: ${user?.lastName ?? 'N/A'}',
+              style: const TextStyle(fontSize: 16),
+            ),
+            const SizedBox(height: 20),
+            Text(
+              'Age: ${user?.age ?? 'N/A'}',
+              style: const TextStyle(fontSize: 16),
+            ),
           ],
         ),
       ),

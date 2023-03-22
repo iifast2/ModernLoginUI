@@ -48,7 +48,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
+
+        leading:
+
+        IconButton(
           icon: const Icon(Icons.account_circle_rounded, color: Colors.white),
           onPressed: () {
             Navigator.push(
@@ -58,14 +61,18 @@ class _HomePageState extends State<HomePage> {
           },
         ),
 
-
-        title: Text(user.email!,
-          style: const TextStyle(fontSize: 16),
+        title: Center(
+          child: Text(user.email!,
+            style: const TextStyle(fontSize: 16),
+          ),
         ),
+
 
 
         backgroundColor: Colors.deepPurple[200],
         elevation: 0,
+
+
         actions: [
           TextButton.icon(
             onPressed: signUserOut,
@@ -80,6 +87,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+
+
+
 
 
 
