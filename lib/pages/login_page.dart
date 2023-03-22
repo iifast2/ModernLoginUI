@@ -270,7 +270,7 @@ if (!isValidEmail(emailController.text)) {
 
                         const SizedBox(height: 25),
 
-                       // Email TextField
+                        // Email TextField
                         Form(
                           key: _formKey,
                           child: Column(
@@ -312,9 +312,9 @@ if (!isValidEmail(emailController.text)) {
                             children: [
                               GestureDetector(
                                 onTap: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                return ForgotPasswordPage();
-                                },),);
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                                    return ForgotPasswordPage();
+                                  },),);
                                 },
 
                                 child: const Text(
@@ -324,7 +324,7 @@ if (!isValidEmail(emailController.text)) {
                                     color: Colors.blue,
                                     fontWeight: FontWeight.bold,
                                   ),
-                              ),
+                                ),
                               ),
                             ],
                           ),

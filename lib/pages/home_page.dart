@@ -5,8 +5,9 @@ import 'package:modernlogintute/pages/login_or_register_page.dart';
 import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/Mobile_screenshot_blocker.dart';
 import 'package:modernlogintute/components/utils.dart';
-import 'package:modernlogintute/pages/user_profile_page.dart';
 import 'package:modernlogintute/read_data/get_user_name.dart';
+import 'package:modernlogintute/pages/user_profile_page.dart';
+
 
 class HomePage extends StatefulWidget {
   @override
@@ -24,9 +25,9 @@ class _HomePageState extends State<HomePage> {
   Future getDocId() async {
     await FirebaseFirestore.instance.collection('users').get().then(
             (snapshot) => snapshot.docs.forEach((document) {
-              print(document.reference);
-              docIDs.add(document.reference.id);
-            }));
+          print(document.reference);
+          docIDs.add(document.reference.id);
+        }));
 
 
   }
@@ -47,10 +48,22 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-        Text(user.email!,
-        style: const TextStyle(fontSize: 16),
+        leading: IconButton(
+          icon: const Icon(Icons.account_circle_rounded, color: Colors.white),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => UserProfilePage()),
+            );
+          },
         ),
+
+
+        title: Text(user.email!,
+          style: const TextStyle(fontSize: 16),
+        ),
+
+
         backgroundColor: Colors.deepPurple[200],
         elevation: 0,
         actions: [
@@ -67,6 +80,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+
 
 
       body: Center(
@@ -112,7 +126,9 @@ class _HomePageState extends State<HomePage> {
             ),
 
 
-        const SizedBox(height: 15),
+            const SizedBox(height: 15),
+
+/*
 
 
             ElevatedButton(
@@ -125,25 +141,26 @@ class _HomePageState extends State<HomePage> {
               child: const Text('Go to User Profile'),
             ),
 
-        const SizedBox(height: 15),
 
-/*        Expanded(
+*/
 
-        child: FutureBuilder(
-        future: getDocId(),
-        builder: (context , snapshot){
-          return ListView.builder(
-              itemCount: docIDs.length,
-              itemBuilder: (context, index){
-                return ListTile(
-                  title: GetUserName(documentId: docIDs[index],),
-                );
-              });
-        })
-        ),
+            const SizedBox(height: 15),
 
-        */
-           
+            Expanded(
+
+                child: FutureBuilder(
+                    future: getDocId(),
+                    builder: (context , snapshot){
+                      return ListView.builder(
+                          itemCount: docIDs.length,
+                          itemBuilder: (context, index){
+                            return ListTile(
+                              title: GetUserName(documentId: docIDs[index],),
+                            );
+                          });
+                    })
+            ),
+
 
 
 
@@ -168,7 +185,7 @@ class MobileScreenshotBlockerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
-        AppBar(title: const Text('Mobile Screenshot Blocker'),
+      AppBar(title: const Text('Mobile Screenshot Blocker'),
         backgroundColor: Colors.deepPurple[200],
       ),
       body: Center(

@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:modernlogintute/components/my_button.dart';
 import 'package:modernlogintute/components/my_textfield.dart';
 import 'package:modernlogintute/components/square_tile.dart';
-// import 'package:modernlogintute/pages/update_user_data.dart';
-
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -190,32 +188,32 @@ class _RegisterPageState extends State<RegisterPage> {
                     Column(
                       children: [
 
-                            const SizedBox(height: 50),
+                        const SizedBox(height: 50),
 
-                            const Icon(
-                              Icons.account_box_rounded,
-                              size: 100,
-                            ),
+                        const Icon(
+                          Icons.account_box_rounded,
+                          size: 100,
+                        ),
 
-                            const SizedBox(height: 50),
+                        const SizedBox(height: 50),
 
-                            // welcome back, you've been missed!
-                            Text(
-                              'Let\'s create an account for you!',
-                              style: TextStyle(
-                                color: Colors.grey[700],
-                                fontSize: 16,
-                              ),
-                            ),
+                        // welcome back, you've been missed!
+                        Text(
+                          'Let\'s create an account for you!',
+                          style: TextStyle(
+                            color: Colors.grey[700],
+                            fontSize: 16,
+                          ),
+                        ),
 
-                            const SizedBox(height: 25),
+                        const SizedBox(height: 25),
 
                         Form(
                           key: _formKey,
                           child: Column(
                             children: [
 
-                            // email textfield
+                              // email textfield
                               MyTextField(
                                 validator: emailValidator,
                                 controller: _emailController,
@@ -284,7 +282,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                               const SizedBox(height: 10),
 
-                            // password textfield
+                              // password textfield
                               MyTextField(
                                 validator: passwordValidator,
                                 controller: _passwordController,
@@ -294,7 +292,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
                               const SizedBox(height: 10),
 
-                            // confirm password textfield
+                              // confirm password textfield
                               MyTextField(
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
