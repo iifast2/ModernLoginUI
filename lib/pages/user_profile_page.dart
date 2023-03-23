@@ -42,18 +42,23 @@ class _UserProfilePageState extends State<UserProfilePage> {
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
+
+
+            // Not displaying any data
+            // error : Undefined name 'firstName'.
+
             Text(
-              'First Name: ${user?.firstName ?? 'N/A'}',
+              'First Name: ${firstName ?? 'N/A'}',
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
             Text(
-              'Last Name: ${user?.lastName ?? 'N/A'}',
+              'Last Name: ${lastName ?? 'N/A'}',
               style: const TextStyle(fontSize: 16),
             ),
             const SizedBox(height: 20),
             Text(
-              'Age: ${user?.age ?? 'N/A'}',
+              'Age: ${age ?? 'N/A'}',
               style: const TextStyle(fontSize: 16),
             ),
           ],
