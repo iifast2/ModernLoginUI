@@ -13,17 +13,7 @@ class User {
     required this.age,
   });
 
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(
-      uid: json['uid'],
-      email: json['email'],
-      firstName: json['firstName'],
-      lastName: json['lastName'],
-      age: json['age'],
-    );
-  }
-
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       'uid': uid,
       'email': email,
@@ -31,5 +21,15 @@ class User {
       'lastName': lastName,
       'age': age,
     };
+  }
+
+  factory User.fromMap(Map<String, dynamic> map) {
+    return User(
+      uid: map['uid'],
+      email: map['email'],
+      firstName: map['firstName'],
+      lastName: map['lastName'],
+      age: map['age'],
+    );
   }
 }
