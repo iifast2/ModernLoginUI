@@ -12,7 +12,6 @@ import 'package:modernlogintute/pages/anonymous_home_page.dart';
 import 'package:modernlogintute/pages/home_page.dart';
 
 
-
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
 
@@ -25,11 +24,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // text editing controllers
 
-
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
 // Press Enter to Login :
@@ -39,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
 
 
-//////////////////////////// Sign in Anonymously - Start /////////////////////////////
+//  Sign in Anonymously - Start //
 
   void signInAnonymously() async {
     // show a loading circle while the user logs in
@@ -74,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.pop(context);
   }
 
-//////////////////////////// Sign in Anonymously - End /////////////////////////////
+//  Sign in Anonymously - End  //
 
 
   void showValidationMessage(String message) {
@@ -89,7 +86,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
 
-//////////////////////////// Sign in Exceptions & Validators - Start /////////////////////////////
+//  Sign in Exceptions & Validators - Start //
 
   bool isValidEmail(String email) {
     final RegExp emailRegex = RegExp(
@@ -97,14 +94,6 @@ class _LoginPageState extends State<LoginPage> {
     );
     return emailRegex.hasMatch(email);
   }
-
-
-
-  /*
-  Network-related exceptions: When there's no internet connection or network
-  issues, you might want to inform the user to check their connection.
-
-  */
 
   void networkIssueMessage() {
     ScaffoldMessenger.of(context).showSnackBar(

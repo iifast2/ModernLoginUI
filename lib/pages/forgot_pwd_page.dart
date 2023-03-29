@@ -57,9 +57,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 const SizedBox(height: 30),
-
                 const Text(
                   "Reset Your Password",
                   textAlign: TextAlign.center,

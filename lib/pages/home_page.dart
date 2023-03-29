@@ -5,9 +5,6 @@ import 'package:modernlogintute/pages/login_or_register_page.dart';
 import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/Mobile_screenshot_blocker.dart';
 import 'package:modernlogintute/components/utils.dart';
-import 'package:modernlogintute/read_data/get_user_name.dart';
-import 'package:modernlogintute/pages/user_profile_page.dart';
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -17,29 +14,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final user = FirebaseAuth.instance.currentUser!;
 
-  // document IDs
-  List<String> docIDs = [];
-
-
-  // go docIDs
-  Future getDocId() async {
-    await FirebaseFirestore.instance.collection('users').get().then(
-            (snapshot) => snapshot.docs.forEach((document) {
-          print(document.reference);
-          docIDs.add(document.reference.id);
-        }));
-
-
-  }
-
-
   void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
 
   @override
   void initState() {
-    //getDocId();
     super.initState();
     Utils.enableScreenshotProtection();
   }
@@ -49,30 +29,41 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
 
-        leading:
 
-        IconButton(
+/*        leading: IconButton(
           icon: const Icon(Icons.account_circle_rounded, color: Colors.white),
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => UserProfilePage()),
-            );
+            User? user = FirebaseAuth.instance.currentUser;
+            if (user != null) {
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => UserProfilePage(context),
+                ),
+              );
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('Please Log in!'),
+                  duration: Duration(seconds: 4),
+                  backgroundColor: Colors.purpleAccent,
+                ),
+              );
+            }
           },
         ),
+        */
+
 
         title: Center(
-          child: Text(user.email!,
+          child: Text(
+            user.email!,
             style: const TextStyle(fontSize: 16),
           ),
         ),
-
-
-
         backgroundColor: Colors.deepPurple[200],
         elevation: 0,
-
-
         actions: [
           TextButton.icon(
             onPressed: signUserOut,
@@ -87,47 +78,42 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-
-
-
-
-
-
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
 
-
-/*            const Icon(
-              Icons.home_rounded,
-              size: 100,
-              color: Colors.deepPurple,
+            Container(
+              width: 120,
+              height: 120,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                image: DecorationImage(
+                  // Use the user's profile picture URL as the image source
+                  image: NetworkImage(user.photoURL ?? 'https://i.imgur.com/a73xXCl.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
             ),
-*/
 
-
+            const SizedBox(height: 16),
 
             Text(
-              // "Logged in As: ${user.email ?? 'Unknown'}",
               "Logged in As: ${user.email}",
-              style: const TextStyle(fontSize: 40),
+              style: const TextStyle(fontSize: 20),
             ),
 
-            const SizedBox(height: 15),
+
+            const SizedBox(height: 30),
 
 
-            // Button to Go to ScreenBlocker Page
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-
                   MaterialPageRoute(
                     builder: (context) => MobileScreenshotBlockerPage(
-                      onSecureModeChanged: () {
-                        // Secure mode has been changed
-                      },
+                      onSecureModeChanged: () {},
                     ),
                   ),
                 );
@@ -135,45 +121,7 @@ class _HomePageState extends State<HomePage> {
               child: const Text('Go to Mobile Screenshot Blocker Page'),
             ),
 
-
             const SizedBox(height: 15),
-
-/*
-
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => UserProfilePage()),
-                );
-              },
-              child: const Text('Go to User Profile'),
-            ),
-
-
-*/
-
-            const SizedBox(height: 15),
-
-            Expanded(
-
-                child: FutureBuilder(
-                    future: getDocId(),
-                    builder: (context , snapshot){
-                      return ListView.builder(
-                          itemCount: docIDs.length,
-                          itemBuilder: (context, index){
-                            return ListTile(
-                              title: GetUserName(documentId: docIDs[index],),
-                            );
-                          });
-                    })
-            ),
-
-
-
-
 
           ],
         ),
@@ -183,9 +131,6 @@ class _HomePageState extends State<HomePage> {
 }
 
 
-
-
-// [ For Android ] / subpage - This will keep the screenshotBlocker on the home page always "on" !!
 class MobileScreenshotBlockerPage extends StatelessWidget {
   final VoidCallback onSecureModeChanged;
 
@@ -194,8 +139,8 @@ class MobileScreenshotBlockerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-      AppBar(title: const Text('Mobile Screenshot Blocker'),
+      appBar: AppBar(
+        title: const Text('Mobile Screenshot Blocker'),
         backgroundColor: Colors.deepPurple[200],
       ),
       body: Center(
