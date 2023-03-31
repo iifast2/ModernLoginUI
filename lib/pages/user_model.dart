@@ -6,15 +6,13 @@ class User {
   final int age;
 
   User({
-    this.uid = '',
+    required this.uid,
     required this.email,
     required this.firstName,
     required this.lastName,
     required this.age,
   });
 
-
-// Also could be called toJson Method
   Map<String, dynamic> toMap() {
     return {
       'uid': uid,
@@ -25,18 +23,13 @@ class User {
     };
   }
 
-  // Also could be called fromJson Method
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
-      uid: map['uid'] ?? '',
-      email: map['email'] ?? '',
-      firstName: map['firstName'] ?? '',
-      lastName: map['lastName'] ?? '',
-      age: map['age'] ?? 0,
+      uid: map['uid'],
+      email: map['email'],
+      firstName: map['firstName'],
+      lastName: map['lastName'],
+      age: map['age'],
     );
   }
-
-
-
 }
-

@@ -6,8 +6,8 @@ import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/Mobile_screenshot_blocker.dart';
 import 'package:modernlogintute/components/utils.dart';
 
-import '../components/square_tile.dart';
 import '../user_crud/add_user.dart';
+import '../user_crud/read_users.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -107,6 +107,39 @@ class _HomePageState extends State<HomePage> {
             ),
 
 
+
+
+            const SizedBox(height: 15),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddUserPage(),
+                  ),
+                );
+              },
+              child: const Text('Add user page'),
+            ),
+
+            const SizedBox(height: 15),
+
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ReadUsersPage(),
+                  ),
+                );
+              },
+              child: const Text('View All users page'),
+            ),
+
+            // const SizedBox(height: 15),
+
             const SizedBox(height: 30),
 
 
@@ -122,22 +155,6 @@ class _HomePageState extends State<HomePage> {
                 );
               },
               child: const Text('Go to Mobile Screenshot Blocker Page'),
-            ),
-
-
-
-            const SizedBox(height: 15),
-
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddUserPage(),
-                  ),
-                );
-              },
-              child: const Text('Add user page'),
             ),
 
             const SizedBox(height: 15),

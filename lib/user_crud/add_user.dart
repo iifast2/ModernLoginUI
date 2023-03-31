@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import '../components/my_textfield.dart';
+import 'package:modernlogintute/components/my_textfield.dart';
+import 'package:modernlogintute/user_crud/user_model.dart';
 
 class AddUserPage extends StatefulWidget {
   const AddUserPage({Key? key}) : super(key: key);
@@ -17,16 +18,17 @@ class _AddUserPageState extends State<AddUserPage> {
   final TextEditingController _ageController = TextEditingController();
 
 
-  Future<void> createUser({required String firstName, required String lastName, required String email, required int age}) async {
+  Future<void> createUser(User user) async {
     // Reference to document
     final docUser = FirebaseFirestore.instance.collection('users').doc();
+    final json = user.toMap();
 
-    final json = {
+/*    final json = {
       'firstName': firstName,
       'lastName': lastName,
       'email': email,
       'age': age,
-    };
+    };*/
 
     // Create document and write data to firebase
     await docUser.set(json);
@@ -101,12 +103,16 @@ class _AddUserPageState extends State<AddUserPage> {
                 onPressed: () {
                   if (_formKey.currentState!.validate()) {
                     // Call the createUser function with the entered user data
-                    createUser(
+                    final user = User(
+                      email: _emailController.text,
                       firstName: _firstNameController.text,
                       lastName: _lastNameController.text,
-                      email: _emailController.text,
                       age: int.parse(_ageController.text),
                     );
+
+                    // Call the createUser function with the user object
+                    createUser(user);
+
                     // Navigate back to previous screen
                     Navigator.pop(context);
                   }
@@ -122,6 +128,7 @@ class _AddUserPageState extends State<AddUserPage> {
   }
 }
 
+/*
 
 class User {
   String uid;
@@ -138,4 +145,6 @@ class User {
     required this.age,
   });
 
+
 }
+*/

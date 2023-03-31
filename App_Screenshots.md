@@ -51,6 +51,13 @@
 </p>
 
 
+<p align="center">
+  <img src="https://i.imgur.com/oFJl0M5.png" width="600"> 
+</p>
+
+
+
+
 https://console.cloud.google.com/apis/api/people.googleapis.com/overview?project=846946449640
 
 
@@ -82,7 +89,6 @@ Adding validators for Login, Register and Forgot Password Pages
 
 
 
-
 <br/><br/>
 
 ## Android Studio Configuration
@@ -109,3 +115,15 @@ Adding validators for Login, Register and Forgot Password Pages
 
 
 <br/><br/>
+
+
+### Users ( CREATE & READ )
+
+<p align="center">
+  <img src="https://i.imgur.com/PpcHF5o.png" width="600">
+  <img src="https://i.imgur.com/0yYv9JW.png" width="600">
+</p>
+
+
+<br/><br/>
+

@@ -11,8 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:modernlogintute/pages/anonymous_home_page.dart';
 import 'package:modernlogintute/pages/home_page.dart';
 
-import '../user_crud/add_user.dart';
-
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -395,14 +393,7 @@ if (!isValidEmail(emailController.text)) {
                             // apple button
                             SquareTile(
                                 imagePath: 'lib/images/apple.png',
-                                onTap: () {
-/*
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(builder: (context) => AddUserPage()),
-                                  );
-*/
-                                }),
+                                onTap: () {}),
 
                             const SizedBox(width: 15),
                             // facebook button

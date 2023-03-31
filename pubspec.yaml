@@ -20,6 +20,8 @@ dependencies:
   google_sign_in: ^6.0.1
   google_sign_in_web: ^0.11.0+1
   flutter_windowmanager: ^0.2.0
+  image_picker: ^0.8.7+1
+  firebase_storage: ^11.1.0
 
 
 dev_dependencies:
@@ -29,12 +31,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.3.3
 
-# Add the following lines at the top level of the file:
-build:
-  builders:
-    json_serializable:
-      options:
-        exclude: []
+
 
 flutter:
   uses-material-design: true

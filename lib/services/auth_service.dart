@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 //import 'package:google_sign_in_web/google_sign_in_web.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
 
@@ -60,7 +60,5 @@ This was in the login_page.dart I remove it because I'm using auth_service.dart 
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-//////////////////////////// Sign in with Google - End /////////////////////////////
 
-
-* */
+*/
