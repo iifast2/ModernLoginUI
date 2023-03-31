@@ -6,6 +6,9 @@ import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/Mobile_screenshot_blocker.dart';
 import 'package:modernlogintute/components/utils.dart';
 
+import '../components/square_tile.dart';
+import '../user_crud/add_user.dart';
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -119,6 +122,22 @@ class _HomePageState extends State<HomePage> {
                 );
               },
               child: const Text('Go to Mobile Screenshot Blocker Page'),
+            ),
+
+
+
+            const SizedBox(height: 15),
+
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AddUserPage(),
+                  ),
+                );
+              },
+              child: const Text('Add user page'),
             ),
 
             const SizedBox(height: 15),

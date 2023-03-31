@@ -1,3 +1,4 @@
+/*
 class User {
   final String uid;
   final String email;
@@ -33,3 +34,4 @@ class User {
     );
   }
 }
+*/
