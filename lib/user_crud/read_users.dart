@@ -12,6 +12,23 @@ class ReadUsersPage extends StatefulWidget {
 class _ReadUsersPageState extends State<ReadUsersPage> {
   late Stream<List<User>> _usersStream;
 
+  void deleteUser(String userId) {
+    FirebaseFirestore.instance.collection('users').doc(userId).delete().then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('User deleted successfully'),
+        ),
+      );
+    }).catchError((error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Failed to delete user: $error'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -43,7 +60,7 @@ class _ReadUsersPageState extends State<ReadUsersPage> {
         ],
       ),
       body: StreamBuilder<List<User>>(
-        stream: readUsers(),
+        stream: _usersStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             final users = snapshot.data!;
@@ -72,15 +89,39 @@ class _ReadUsersPageState extends State<ReadUsersPage> {
                               DataCell(
                                 Row(
                                   children: [
+
+
+
                                     IconButton(
                                       onPressed: () {
                                         // Implement update functionality
+                                        final docUser = FirebaseFirestore.instance
+                                            .collection('users')
+                                            .doc('my-id');
+
+                                        // update specific field
+                                          docUser.update({
+                                            'name':'Emma',
+                                          });
+
+                                          // instead of the update you can use the set method.
+
+
+
                                       },
-                                     icon: const Icon(Icons.edit, color: Colors.green),
+                                      icon: const Icon(Icons.edit, color: Colors.green),
                                     ),
+
+
+
+
+
+
+
+
                                     IconButton(
                                       onPressed: () {
-                                        // Implement delete functionality
+                                        deleteUser(user.uid);
                                       },
                                       icon: const Icon(Icons.delete, color: Colors.red),
                                     ),

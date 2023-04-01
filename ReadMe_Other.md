@@ -329,6 +329,54 @@ and to thoroughly test your app to ensure that everything is working as expected
 <br/>
 
 
+
+### Users Roles : 
+
+
+**Why are the roles in firestore Database are saved like this ( role : UserRole.user ) ?** 
+
+
+```
+Yes, that is correct. In the User constructor, the default value for the role parameter is set to UserRole.user,
+
+which means that if no value is provided for the role field when creating a new User,
+
+its value will be set to UserRole.user. So when you create a new user without specifying a role,
+
+the role will be set to UserRole.user.
+
+```
+
+
+**shouldn't that be like this ( role : user ) ?**
+
+
+```
+The way the toMap() method is implemented in your User class,
+
+the value of the role field will be stored as a string with the format "UserRole.<role>",
+
+where <role> is one of the enum values (i.e. "admin", "trainer", "contentManager", or "user").
+
+So, when you create a new user and don't specify a value for the role field, it will default to UserRole.user,
+
+and then be stored in the Firestore database as "UserRole.user".
+
+Therefore, when you retrieve the user from the database using the fromMap() method,
+
+it correctly converts the stored string value back into an enum value of UserRole.user.
+ 
+```
+
+
+---
+
+<br/>
+<br/>
+<br/>
+<br/>
+
+
 ## solving Google Sign in issue 
 
 
