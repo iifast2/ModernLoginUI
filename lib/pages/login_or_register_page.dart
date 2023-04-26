@@ -2,10 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/pages/login_page.dart';
 import 'package:modernlogintute/pages/register_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class LoginOrRegisterPage extends StatefulWidget {
-  const LoginOrRegisterPage({Key? key}) : super(key: key);
+  final String? userId;
+
+  LoginOrRegisterPage({Key? key, this.userId}) : super(key: key);
 
   @override
   State<LoginOrRegisterPage> createState() => _LoginOrRegisterPageState();
@@ -14,6 +17,7 @@ class LoginOrRegisterPage extends StatefulWidget {
 class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
   // initially show login page
   bool showLoginPage = true;
+
 
 
 // toggle between the login and register page
@@ -27,7 +31,6 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
   }
 
 
-
   @override
   Widget build(BuildContext context) {
     if(showLoginPage){
@@ -36,7 +39,8 @@ class _LoginOrRegisterPageState extends State<LoginOrRegisterPage> {
       );
     }else{
       return RegisterPage(
-        onTap: togglePages,
+          //userId: widget.userId!,
+         onTap: togglePages,
 
       );
     }

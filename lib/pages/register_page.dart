@@ -7,7 +7,9 @@ import 'package:modernlogintute/components/square_tile.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
+ // final String userId;
 
+//, required this.userId
   const RegisterPage({super.key, required this.onTap});
 
   @override
@@ -15,8 +17,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  // text editing controllers
 
+  // text editing controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
@@ -24,9 +26,6 @@ class _RegisterPageState extends State<RegisterPage> {
   final _lastNameController = TextEditingController();
   final _ageController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
-
-// I used dispose() with these !!!
 
 
   @override

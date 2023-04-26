@@ -18,7 +18,8 @@ class User {
     required this.email,
     required this.firstName,
     required this.lastName,
-    required this.age,
+    this.age = 0, // default value for age
+    //required this.age,
     this.role = UserRole.user, // default role is "user"
   });
 
@@ -51,7 +52,10 @@ class User {
     return role.toString().split('.').last;
   }
 
+
 }
+
+
 
 
 

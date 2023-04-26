@@ -27,6 +27,7 @@ class AuthService {
     final credential = GoogleAuthProvider.credential(
       accessToken: gAuth.accessToken,
       idToken: gAuth.idToken,
+
     );
 
 

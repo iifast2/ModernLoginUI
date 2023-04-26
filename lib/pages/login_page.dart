@@ -22,24 +22,33 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  // text editing controllers
 
+  // text editing controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-// Press Enter to Login :
+  // Press Enter to Login :
   final FocusNode _focusNode = FocusNode();
 
-// Sing in Validator Key :
+  // Sing in Validator Key :
   final _formKey = GlobalKey<FormState>();
 
 
-//  Sign in Anonymously - Start //
+  @override
+  void dispose(){
 
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+
+
+
+//  Sign in Anonymously - Start //
   void signInAnonymously() async {
-    // show a loading circle while the user logs in
     showDialog(
       context: context,
       builder: (context) {
@@ -49,25 +58,19 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
 
-    // Sign in anonymously
     try {
       await FirebaseAuth.instance.signInAnonymously();
     } on FirebaseAuthException catch (e) {
-      // hide the loading circle
       Navigator.pop(context);
 
-      // show error to user
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(e.message ?? 'An unknown error occurred.'),
           duration: Duration(seconds: 3),
           backgroundColor: Colors.redAccent,
-
         ),
       );
     }
-
-    // hide the loading circle
     Navigator.pop(context);
   }
 
@@ -80,7 +83,6 @@ class _LoginPageState extends State<LoginPage> {
         content: Text(message),
         duration: Duration(seconds: 3),
         backgroundColor: Colors.redAccent,
-
       ),
     );
   }
@@ -101,13 +103,10 @@ class _LoginPageState extends State<LoginPage> {
         content: Text('Network issue, please check your internet connection'),
         duration: Duration(seconds: 3),
         backgroundColor: Colors.purpleAccent,
-
       ),
     );
   }
 
-
-  /* General exceptions: For other unknown or unexpected exceptions, you can show a generic error message.  */
 
   void generalErrorMessage() {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -147,6 +146,9 @@ class _LoginPageState extends State<LoginPage> {
 
 //////////////////////////// sign user in method - Start /////////////////////////////
 
+
+
+
   void signUserIn() async {
     if (!_formKey.currentState!.validate()) {
       return;
@@ -164,6 +166,7 @@ if (!isValidEmail(emailController.text)) {
     }
   */
 
+
     showDialog(
       context: context,
       builder: (context) {
@@ -177,6 +180,7 @@ if (!isValidEmail(emailController.text)) {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
+
       );
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -226,8 +230,7 @@ if (!isValidEmail(emailController.text)) {
                         height: 40,
                       ),
                     ),
-                    // the rest of the content
-
+                    
                     Column(
                       children: [
                         const SizedBox(height: 50),
@@ -265,7 +268,6 @@ if (!isValidEmail(emailController.text)) {
                           child: Column(
                             children: [
 
-                              // Email Field
                               MyTextField(
                                 validator: (value) {
                                   if (!isValidEmail(value!)) {
@@ -292,8 +294,6 @@ if (!isValidEmail(emailController.text)) {
 
                         const SizedBox(height: 10),
 
-
-                        // forgot password?
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
                           child: Row(
@@ -337,7 +337,6 @@ if (!isValidEmail(emailController.text)) {
 
 
                         const SizedBox(height: 50),
-                        // or continue with
 
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 25.0),
@@ -369,12 +368,9 @@ if (!isValidEmail(emailController.text)) {
 
                         const SizedBox(height: 50),
 
-                        // google + apple sign in buttons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // google button
-
                             SquareTile(
                               imagePath: 'lib/images/google.png',
                               onTap: () async {
@@ -384,7 +380,7 @@ if (!isValidEmail(emailController.text)) {
                                 } catch (eg) {
                                   // Handle any errors or exceptions
                                   print('Error signing in with Google: $eg');
-                                }
+                                }                         
                               },
                             ),
 
@@ -404,7 +400,6 @@ if (!isValidEmail(emailController.text)) {
                         ),
 
                         const SizedBox(height: 30),
-
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -426,7 +421,6 @@ if (!isValidEmail(emailController.text)) {
 
                         const SizedBox(height: 30),
 
-                        // not a member? register now
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

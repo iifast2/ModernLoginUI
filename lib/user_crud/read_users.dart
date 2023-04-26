@@ -9,6 +9,7 @@ class ReadUsersPage extends StatefulWidget {
   _ReadUsersPageState createState() => _ReadUsersPageState();
 }
 
+
 class _ReadUsersPageState extends State<ReadUsersPage> {
   late Stream<List<User>> _usersStream;
 
@@ -101,10 +102,9 @@ class _ReadUsersPageState extends State<ReadUsersPage> {
 
                                         // update specific field
                                           docUser.update({
-                                            'name':'Emma',
-                                          });
+                                            'firstName' : 'emma'
 
-                                          // instead of the update you can use the set method.
+                                          });
 
 
 

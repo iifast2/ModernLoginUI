@@ -416,8 +416,26 @@ Error signing in with Google: {
 
 ```
 
+How to fix  : 
+
+```
+Access blocked: FlutterGoogleAuthTute has not completed the Google verification process
+admin@gmail.com
+FlutterGoogleAuthTute has not completed the Google verification process. The app is currently being tested,
+and can only be accessed by developer-approved testers. If you think you should have access, contact the developer.
+```
+
+**Solution :**  https://youtu.be/bkZns_VOB6I 
 
 
+https://console.cloud.google.com/welcome?hl=fr&project=authtutorial-c1a70
+
+
+
+<p align="center">
+  <img src="https://i.imgur.com/aydWII4.png" width="300"> 
+</p>
+<br/>
 
 ---
 

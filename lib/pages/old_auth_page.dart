@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:modernlogintute/pages/home_page.dart';
@@ -6,7 +6,7 @@ import 'package:modernlogintute/pages/anonymous_home_page.dart';
 import 'package:modernlogintute/pages/login_or_register_page.dart';
 import 'dart:async';
 
-
+/*
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
 
@@ -16,7 +16,6 @@ class AuthPage extends StatefulWidget {
 
 class _AuthPageState extends State<AuthPage> {
   Timer? _emailVerificationTimer;
-  String? userId;
 
   @override
   void initState() {
@@ -55,7 +54,6 @@ class _AuthPageState extends State<AuthPage> {
   @override
   void dispose() {
     _stopEmailVerificationTimer();
-    getCurrentUser();
     super.dispose();
   }
 
@@ -94,15 +92,14 @@ class _AuthPageState extends State<AuthPage> {
 
 
 
-  Future<void> getCurrentUser() async {
+  Future<String> inputData() async {
     final User user = await FirebaseAuth.instance.currentUser!;
-    setState(() {
-      userId = user.uid;
-    });
+    final String uid = user.uid.toString();
+    return uid;
   }
 
-/*
-  Future<String>getCurrentUser() async {
+
+  getCurrentUser() async {
     final User user = await FirebaseAuth.instance.currentUser!;
     final myuid = user.uid;
 
@@ -110,9 +107,8 @@ class _AuthPageState extends State<AuthPage> {
     //final uemail = user.email;
     print(myuid);
     //print(uemail);
-    return myuid;
-  }*/
-
+  }
+//////////////
 
 
   @override
@@ -125,7 +121,6 @@ class _AuthPageState extends State<AuthPage> {
           if (snapshot.hasData) {
             final User? user = snapshot.data;
 
-
             if (user != null) {
               // If the user is anonymous, navigate to AnonymousHomePage
               if (user.isAnonymous) {
@@ -133,8 +128,8 @@ class _AuthPageState extends State<AuthPage> {
               }
               // Check if email is verified
               if (user.emailVerified) {
-                // getCurrentUser;
-                return HomePage(userId: user.uid);
+                getCurrentUser;
+                return HomePage(myuid);
               } else {
 
 
@@ -166,8 +161,10 @@ class _AuthPageState extends State<AuthPage> {
 
                                 showEmailVerificationErrorSnackBar(e, context);
                               } else {
-                                /* If the error is not an exception, you can handle it differently or ignore it
-                                If the error is not an exception, display a generic error message */
+                                */
+/* If the error is not an exception, you can handle it differently or ignore it
+                                If the error is not an exception, display a generic error message *//*
+
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                      content: Text('An unknown error occurred. ${e.toString()}'),
@@ -195,18 +192,17 @@ class _AuthPageState extends State<AuthPage> {
                 );
               }
             } else {
-
               // If the user is anonymous
               return AnonymousHomePage();
             }
 
 
           } else {
-            return  LoginOrRegisterPage(userId: userId,);
-
+            return const LoginOrRegisterPage();
           }
         },
       ),
     );
   }
 }
+*/
